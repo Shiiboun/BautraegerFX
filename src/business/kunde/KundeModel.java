@@ -1,6 +1,10 @@
 package business.kunde;
 
 import java.sql.SQLException;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
+
 import javafx.collections.*;
   
 /** 
@@ -17,7 +21,9 @@ public final class KundeModel {
 	    FXCollections.observableArrayList(
 		0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24);
 	
-
+	// enthaelt Plannummern der Haeuser, welche kein Dachgeschoss besitzen
+	Set<Integer> plannummernOhneDG = new HashSet<Integer>(Arrays.asList(new Integer[] {1, 6, 7, 14, 15, 24})); 
+		
 	// enthaelt das einzige KundeModel-Objekt
 	private static KundeModel kundeModel;
 	
@@ -55,6 +61,15 @@ public final class KundeModel {
 		return this.plannummern; 
 	}
 		 	
+	/**
+	 * gibt saemtliche Plannummern der Haeuser des Baugebiets heraus, 
+	 * welche kein Dachgeschoss besitzen.
+	 * @return Set<Integer> , enthaelt saemtliche Plannummern der Haeuser ohne Dachgeschoss
+	 */
+	public Set<Integer> getPlannummernOhneDG() {
+		return plannummernOhneDG;
+	}
+	
 	// ---- Datenbankzugriffe -------------------
 	
 	/**

@@ -37,6 +37,11 @@ public class KundeView{
     private MenuItem mnItmGrundriss  	= new MenuItem("Grundrissvarianten");
     //-------Ende Attribute der grafischen Oberflaeche-------
   
+    /* Text, welcher aussagt, ob das Haus mit der selektierten Plannummer
+     * ein Dachgeschoss besitzt oder nicht
+    */
+    private Text tvHatDG = new Text();
+    
     /**
      * erzeugt ein KundeView-Objekt und initialisiert die Steuerelemente der Maske
      * @param kundeControl KundeControl, enthaelt das zugehoerige Control
@@ -70,6 +75,7 @@ public class KundeView{
 	    lblKunde.setFont(Font.font("Arial", FontWeight.BOLD, 24));
 	    gridPane.add(lblNummerHaus, 0, 2);
 	    gridPane.add(cmbBxNummerHaus, 1, 2);
+	    gridPane.add(tvHatDG, 2, 2);
 	    cmbBxNummerHaus.setMinSize(150,  25);
 	    cmbBxNummerHaus.setItems(this.kundeModel.getPlannummern());
 	    gridPane.add(lblVorname, 0, 3);
@@ -90,7 +96,8 @@ public class KundeView{
     /* initialisiert die Listener zu den Steuerelementen auf de Maske */
     private void initListener(){
     	cmbBxNummerHaus.setOnAction(aEvent-> {
-    		 holeInfoDachgeschoss();  
+    		 int dgNummer = cmbBxNummerHaus.getValue();
+   		 	 holeInfoDachgeschoss(dgNummer);  
     		 leseKunden();
      	});
        	btnAnlegen.setOnAction(aEvent-> {
@@ -107,7 +114,13 @@ public class KundeView{
 	    });
     }
     
-    private void holeInfoDachgeschoss(){ 
+    private void holeInfoDachgeschoss(int dgNummer){ 
+    	if(this.kundeModel.getPlannummernOhneDG().contains(dgNummer)) {
+    		tvHatDG.setText("Hat kein Dachgeschoss");
+    	}
+    	else {
+    		tvHatDG.setText("Hat Dachgeschoss");
+    	}
     }
     
     private void leseKunden(){
