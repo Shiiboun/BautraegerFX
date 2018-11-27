@@ -35,6 +35,7 @@ public class KundeView{
     private MenuBar mnBar 			  	= new MenuBar();
     private Menu mnSonderwuensche    	= new Menu("Sonderwünsche");
     private MenuItem mnItmGrundriss  	= new MenuItem("Grundrissvarianten");
+    private MenuItem mnItmAussenanlage  	= new MenuItem("Aussenanlagevarianten");
     //-------Ende Attribute der grafischen Oberflaeche-------
   
     /**
@@ -85,6 +86,7 @@ public class KundeView{
 	    borderPane.setTop(mnBar);
 	    mnBar.getMenus().add(mnSonderwuensche);
 	    mnSonderwuensche.getItems().add(mnItmGrundriss);
+	    mnSonderwuensche.getItems().add(mnItmAussenanlage);
     }
 
     /* initialisiert die Listener zu den Steuerelementen auf de Maske */
@@ -104,6 +106,9 @@ public class KundeView{
 	    });
       	mnItmGrundriss.setOnAction(aEvent-> {
  	        kundeControl.oeffneGrundrissControl(); 
+	    });
+      	mnItmAussenanlage.setOnAction(aEvent-> {
+      		kundeControl.oeffneAussenanlageControl(); 
 	    });
     }
     
