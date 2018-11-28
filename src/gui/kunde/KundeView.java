@@ -28,7 +28,13 @@ public class KundeView{
     private ComboBox<Integer> 
         cmbBxNummerHaus                 = new ComboBox<Integer>();
     private Label lblVorname         	= new Label("Vorname");
-    private TextField txtVorname     	= new TextField();   
+    private TextField txtVorname     	= new TextField();
+    private Label lblNachname         	= new Label("Nachname");
+    private TextField txtNachname     	= new TextField(); 
+    private Label lblTelefonnummer    	= new Label("Telefonnummer");
+    private TextField txtTelefonnummer	= new TextField(); 
+    private Label lblEmail    	= new Label("Email");
+    private TextField txtEmail 	= new TextField();
     private Button btnAnlegen	 	  	= new Button("Anlegen");
     private Button btnAendern 	      	= new Button("Ändern");
     private Button btnLoeschen 	 		= new Button("Löschen");
@@ -75,6 +81,12 @@ public class KundeView{
 	    cmbBxNummerHaus.setItems(this.kundeModel.getPlannummern());
 	    gridPane.add(lblVorname, 0, 3);
 	    gridPane.add(txtVorname, 1, 3);
+	    gridPane.add(lblNachname, 0, 4);
+	    gridPane.add(txtNachname, 1, 4);
+	    gridPane.add(lblTelefonnummer, 0, 5);
+	    gridPane.add(txtTelefonnummer, 1, 5);
+	    gridPane.add(lblEmail, 0, 6);
+	    gridPane.add(txtEmail, 1, 6);
 	    // Buttons
 	    gridPane.add(btnAnlegen, 0, 7);
 	    btnAnlegen.setMinSize(150,  25);
