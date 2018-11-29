@@ -128,12 +128,21 @@ public class KundeView{
 
     private void sucheKunden(){
 
+        //TODO: Datenbankanbindung
+
+        zeigeFehlermeldung("Keine Verbindung", "Es wurde noch keine Verbindung zur Datenbank hergestellt.");
+
     }
 
     private void holeInfoDachgeschoss(){ 
     }
     
     private void leseKunden(){
+
+        //TODO: Datenbankanbindung
+
+        zeigeFehlermeldung("Keine Verbindung", "Es wurde noch keine Verbindung zur Datenbank hergestellt.");
+
     }
     
     private void legeKundenAn(){
@@ -143,9 +152,19 @@ public class KundeView{
    	}
     
   	private void aendereKunden(){
+
+        //TODO: Datenbankanbindung
+
+        zeigeFehlermeldung("Keine Verbindung", "Es wurde noch keine Verbindung zur Datenbank hergestellt.");
+
    	}
   	
    	private void loescheKunden(){
+
+        //TODO: Datenbankanbindung
+
+        zeigeFehlermeldung("Keine Verbindung", "Es wurde noch keine Verbindung zur Datenbank hergestellt.");
+
    	}
    	
    /** zeigt ein Fehlermeldungsfenster an
