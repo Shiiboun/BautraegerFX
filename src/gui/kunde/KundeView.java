@@ -28,12 +28,19 @@ public class KundeView{
     private ComboBox<Integer> 
         cmbBxNummerHaus                 = new ComboBox<Integer>();
     private Label lblVorname         	= new Label("Vorname");
+    private Label lblNachname           = new Label("Nachname");
+    private Label lblEmail              = new Label("Email");
+    private Label lblTelefonnummer      = new Label("Telefonnummer");
     private TextField txtVorname     	= new TextField();   
+    private TextField txtNachname       = new TextField();
+    private  TextField txtEmail         = new TextField();
+    private TextField txtTelefonnummer  = new TextField();
     private Button btnAnlegen	 	  	= new Button("Anlegen");
     private Button btnAendern 	      	= new Button("Ändern");
     private Button btnLoeschen 	 		= new Button("Löschen");
+    private Button btnSuchen            = new Button("Suchen");
     private MenuBar mnBar 			  	= new MenuBar();
-    private Menu mnSonderwuensche    	= new Menu("Sonderwünsche");
+    private Menu mnSonderwuensche    	= new Menu("Sonderwuensche");
     private MenuItem mnItmGrundriss  	= new MenuItem("Grundrissvarianten");
     //-------Ende Attribute der grafischen Oberflaeche-------
   
@@ -74,13 +81,22 @@ public class KundeView{
 	    cmbBxNummerHaus.setItems(this.kundeModel.getPlannummern());
 	    gridPane.add(lblVorname, 0, 3);
 	    gridPane.add(txtVorname, 1, 3);
+	    gridPane.add(lblNachname, 0,4);
+	    gridPane.add(txtNachname, 1,4);
+	    gridPane.add(lblEmail,0,5);
+	    gridPane.add(txtEmail,1,5);
+	    gridPane.add(lblTelefonnummer, 0, 6);
+	    gridPane.add(txtTelefonnummer,1,6);
+
 	    // Buttons
 	    gridPane.add(btnAnlegen, 0, 7);
 	    btnAnlegen.setMinSize(150,  25);
 	    gridPane.add(btnAendern, 1, 7);
 	    btnAendern.setMinSize(150,  25);
-	    gridPane.add(btnLoeschen, 2, 7);
+	    gridPane.add(btnLoeschen, 0, 8);
 	    btnLoeschen.setMinSize(150,  25);
+	    gridPane.add(btnSuchen,1,8);
+	    btnSuchen.setMinSize(150,  25);
 	    // MenuBar und Menu
 	    borderPane.setTop(mnBar);
 	    mnBar.getMenus().add(mnSonderwuensche);
@@ -102,11 +118,18 @@ public class KundeView{
        	btnLoeschen.setOnAction(aEvent-> { 
            	loescheKunden();
 	    });
+        btnSuchen.setOnAction(aEvent-> {
+            sucheKunden();
+        });
       	mnItmGrundriss.setOnAction(aEvent-> {
  	        kundeControl.oeffneGrundrissControl(); 
 	    });
     }
-    
+
+    private void sucheKunden(){
+
+    }
+
     private void holeInfoDachgeschoss(){ 
     }
     
