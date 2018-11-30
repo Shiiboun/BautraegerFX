@@ -5,6 +5,7 @@ import java.sql.SQLException;
 import business.kunde.Kunde;
 import business.kunde.KundeModel;
 import gui.grundriss.GrundrissControl;
+import gui.sanitaerinstallation.SanitaerinstallationControl;
 import javafx.stage.Stage;
 
 /**
@@ -17,8 +18,11 @@ public class KundeControl {
     // das Model-Objekt des Grundfensters mit den Kundendaten
     private KundeModel kundeModel;
     /* das GrundrissControl-Objekt fuer die Sonderwuensche
-       zum Grundriss zu dem Kunden */
-    private GrundrissControl grundrissControl;
+    zum Grundriss zu dem Kunden */
+	private GrundrissControl grundrissControl;
+	/* das SanitaerinstallationControl-Objekt fuer die Sonderwuensche
+	 zur Sanitaerinstallation zu dem Kunden */
+	private SanitaerinstallationControl sanitaerinstallationControl;
     
     /**
 	 * erzeugt ein ControlObjekt inklusive View-Objekt und Model-Objekt zum 
@@ -39,6 +43,17 @@ public class KundeControl {
     		this.grundrissControl = new GrundrissControl(kundeModel);
       	}
     	this.grundrissControl.oeffneGrundrissView();
+    }
+    
+    /*
+     * erstellt, falls nicht vorhanden, ein Sanitaerinstallation-Control-Objekt.
+     * Das SanitaerinstallationView wird sichtbar gemacht.
+     */
+    public void oeffneSanitaerinstallationControl(){
+    	if (this.sanitaerinstallationControl == null){
+    		this.sanitaerinstallationControl = new SanitaerinstallationControl(kundeModel);
+      	}
+    	this.sanitaerinstallationControl.oeffneSanitaerinstallationView();
     }
     
 	/**
