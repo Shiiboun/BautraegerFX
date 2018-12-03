@@ -5,6 +5,8 @@ import java.sql.SQLException;
 import business.kunde.Kunde;
 import business.kunde.KundeModel;
 import gui.grundriss.GrundrissControl;
+import gui.aussenanlage.AussenanlageControl;
+import gui.Innentuer.InnentuerControl;
 import javafx.stage.Stage;
 
 /**
@@ -19,6 +21,12 @@ public class KundeControl {
     /* das GrundrissControl-Objekt fuer die Sonderwuensche
        zum Grundriss zu dem Kunden */
     private GrundrissControl grundrissControl;
+    /* das AussenanlageControl-Objekt fuer die Sonderwuensche
+    	zur Aussenanlage zu dem Kunden */
+    private AussenanlageControl aussenanlageControl;
+    /* das AussenanlageControl-Objekt fuer die Sonderwuensche
+	der Innentüren zu dem Kunden */
+    private InnentuerControl innentuerControl;
     
     /**
 	 * erzeugt ein ControlObjekt inklusive View-Objekt und Model-Objekt zum 
@@ -39,6 +47,28 @@ public class KundeControl {
     		this.grundrissControl = new GrundrissControl(kundeModel);
       	}
     	this.grundrissControl.oeffneGrundrissView();
+    }
+    
+    /*
+     * erstellt, falls nicht vorhanden, ein Aussenanlage-Control-Objekt.
+     * Das AussenanlageView wird sichtbar gemacht.
+     */
+    public void oeffneAussenanlageControl(){
+    	if (this.aussenanlageControl == null){
+    		this.aussenanlageControl = new AussenanlageControl(kundeModel);
+      	}
+    	this.aussenanlageControl.oeffneAussenanlageView();
+    }
+    
+    /*
+     * erstellt, falls nicht vorhanden, ein Innentuer-Control-Objekt.
+     * Das AussenanlageView wird sichtbar gemacht.
+     */
+    public void oeffneInnentuerControl(){
+    	if (this.innentuerControl == null){
+    		this.innentuerControl = new InnentuerControl(kundeModel);
+      	}
+    	this.innentuerControl.oeffneinnentuerView();
     }
     
 	/**
