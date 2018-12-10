@@ -96,8 +96,8 @@ public class KundeView{
     /* initialisiert die Listener zu den Steuerelementen auf de Maske */
     private void initListener(){
     	cmbBxNummerHaus.setOnAction(aEvent-> {
-    		 int dgNummer = cmbBxNummerHaus.getValue();
-   		 	 holeInfoDachgeschoss(dgNummer);  
+    		 int plannummer = cmbBxNummerHaus.getValue();
+   		 	 holeInfoDachgeschoss(plannummer);  
     		 leseKunden();
      	});
        	btnAnlegen.setOnAction(aEvent-> {
@@ -114,8 +114,8 @@ public class KundeView{
 	    });
     }
     
-    private void holeInfoDachgeschoss(int dgNummer){ 
-    	if(this.kundeModel.getPlannummernOhneDG().contains(dgNummer)) {
+    private void holeInfoDachgeschoss(int plannummer){ 
+    	if(this.kundeModel.hatDachgeschoss(plannummer)) {
     		tvHatDG.setText("Hat kein Dachgeschoss");
     	}
     	else {

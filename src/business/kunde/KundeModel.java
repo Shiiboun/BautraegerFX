@@ -82,5 +82,13 @@ public final class KundeModel {
 	    throws SQLException, Exception{
         // Speicherung des Kunden in der DB
    	    this.kunde = kunde;
+	}
+
+	
+	public boolean hatDachgeschoss(int plannummer) {
+		if(plannummernOhneDG.contains(plannummer))
+			return false;
+		else
+			return true;
 	}  
 }
