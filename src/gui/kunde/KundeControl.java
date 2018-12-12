@@ -5,6 +5,7 @@ import java.sql.SQLException;
 import business.kunde.Kunde;
 import business.kunde.KundeModel;
 import gui.grundriss.GrundrissControl;
+import gui.bild.BildControl;
 import javafx.stage.Stage;
 
 /**
@@ -19,7 +20,10 @@ public class KundeControl {
     /* das GrundrissControl-Objekt fuer die Sonderwuensche
        zum Grundriss zu dem Kunden */
     private GrundrissControl grundrissControl;
-    
+    /* das BildControl-Objekt fuer das Fenster
+    	des Bildes vom Haus */
+    private BildControl bildControl;
+ 
     /**
 	 * erzeugt ein ControlObjekt inklusive View-Objekt und Model-Objekt zum 
 	 * Grundfenster mit den Kundendaten.
@@ -39,6 +43,17 @@ public class KundeControl {
     		this.grundrissControl = new GrundrissControl(kundeModel);
       	}
     	this.grundrissControl.oeffneGrundrissView();
+    }
+    
+    /*
+     * erstellt, falls nicht vorhanden, ein Grundriss-Control-Objekt.
+     * Das GrundrissView wird sichtbar gemacht.
+     */
+    public void oeffneBildControl(int plannummer){
+    	if (this.bildControl == null){
+    		this.bildControl = new BildControl(kundeModel);
+      	}
+    	this.bildControl.oeffneBildView(plannummer);
     }
     
 	/**

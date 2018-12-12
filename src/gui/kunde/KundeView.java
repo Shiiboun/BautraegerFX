@@ -32,6 +32,7 @@ public class KundeView{
     private Button btnAnlegen	 	  	= new Button("Anlegen");
     private Button btnAendern 	      	= new Button("Ändern");
     private Button btnLoeschen 	 		= new Button("Löschen");
+    private Button btnBildAnzeigen	 	= new Button("Bild vom Haus anzeigen");
     private MenuBar mnBar 			  	= new MenuBar();
     private Menu mnSonderwuensche    	= new Menu("Sonderwünsche");
     private MenuItem mnItmGrundriss  	= new MenuItem("Grundrissvarianten");
@@ -75,7 +76,7 @@ public class KundeView{
 	    lblKunde.setFont(Font.font("Arial", FontWeight.BOLD, 24));
 	    gridPane.add(lblNummerHaus, 0, 2);
 	    gridPane.add(cmbBxNummerHaus, 1, 2);
-	    gridPane.add(tvHatDG, 2, 2);
+	    gridPane.add(tvHatDG, 1, 1);
 	    cmbBxNummerHaus.setMinSize(150,  25);
 	    cmbBxNummerHaus.setItems(this.kundeModel.getPlannummern());
 	    gridPane.add(lblVorname, 0, 3);
@@ -87,6 +88,8 @@ public class KundeView{
 	    btnAendern.setMinSize(150,  25);
 	    gridPane.add(btnLoeschen, 2, 7);
 	    btnLoeschen.setMinSize(150,  25);
+	    gridPane.add(btnBildAnzeigen, 2, 2);
+	    btnBildAnzeigen.setMinSize(150,  25);
 	    // MenuBar und Menu
 	    borderPane.setTop(mnBar);
 	    mnBar.getMenus().add(mnSonderwuensche);
@@ -109,13 +112,22 @@ public class KundeView{
        	btnLoeschen.setOnAction(aEvent-> { 
            	loescheKunden();
 	    });
+       	btnBildAnzeigen.setOnAction(aEvent-> { 
+       		boolean isComboBoxEmpty = cmbBxNummerHaus.getSelectionModel().isEmpty();
+       		if(!isComboBoxEmpty) {
+	       		int plannummer = cmbBxNummerHaus.getValue();
+	       		System.out.println("plannummer: " + plannummer);
+	       		kundeControl.oeffneBildControl(plannummer);
+       		}
+	    });
       	mnItmGrundriss.setOnAction(aEvent-> {
  	        kundeControl.oeffneGrundrissControl(); 
 	    });
+      	
     }
     
     private void holeInfoDachgeschoss(int plannummer){ 
-    	if(this.kundeModel.hatDachgeschoss(plannummer)) {
+    	if(!this.kundeModel.hatDachgeschoss(plannummer)) {
     		tvHatDG.setText("Hat kein Dachgeschoss");
     	}
     	else {
