@@ -3,14 +3,11 @@ package gui.bild;
 import business.bild.*;
 import gui.basis.BasisView;
 
-import javafx.geometry.*;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
-import javafx.scene.text.*;
 import javafx.stage.Stage;
 
 /**
@@ -45,9 +42,6 @@ public class BildView extends BasisView{
         this.bildModel = bildModel;
       
         primaryStage.setTitle(this.bildModel.getUeberschrift());	
-	    //Scene scene = new Scene(borderPane, 550, 400);
-	    //primaryStage.setScene(scene);
-       // primaryStage.show();
 
 	    this.initKomponenten();
 	
@@ -77,27 +71,21 @@ public class BildView extends BasisView{
 	 * macht das BildView-Objekt sichtbar.
 	 */
 	public void oeffneBildView(int plannummer){ 
-	//	System.out.println("fehlerAufgetreten: " + fehlerAufgetreten);
 		System.out.println("plannummer in oeffneBildView: " + plannummer);
-		//if(!fehlerAufgetreten) {
-			img = bildModel.getBild(plannummer);
-	        if(img != null) {
-	        	imageView = new ImageView(img);
-	        	imageView.setFitHeight(300);
-	        	imageView.setFitWidth(450);
-	        	super.getGridPaneSonderwunsch().add(imageView, 0, 2);
-	        	//imageView.fitWidthProperty().bind(primaryStage.widthProperty()); 
-	            //borderPane.setCenter(imageView);
-	        	super.getLblSonderwunsch().setText(lblHaus.getText().toString() + plannummer);
-	        	super.oeffneBasisView();
-	        }
-	        else {
-	        	zeigeFehlermeldung("Tut uns leid", "Zu dem Haus wurde kein Bild gefunden");
-	        	fehlerAufgetreten = true;
-	        	return;
-	        }
-	//	}
-	//	fehlerAufgetreten = false;
+		img = bildModel.getBild(plannummer);
+        if(img != null) {
+        	imageView = new ImageView(img);
+        	imageView.setFitHeight(300);
+        	imageView.setFitWidth(450);
+        	super.getGridPaneSonderwunsch().add(imageView, 0, 2);
+        	super.getLblSonderwunsch().setText(lblHaus.getText().toString() + plannummer);
+        	super.oeffneBasisView();
+        }
+        else {
+        	zeigeFehlermeldung("Tut uns leid", "Zu dem Haus wurde kein Bild gefunden");
+        	fehlerAufgetreten = true;
+        	return;
+        }
 	}
 	
 	@Override
