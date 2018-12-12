@@ -25,7 +25,7 @@ public class KundeControl {
     	zur Aussenanlage zu dem Kunden */
     private AussenanlageControl aussenanlageControl;
     /* das AussenanlageControl-Objekt fuer die Sonderwuensche
-	der Innentüren zu dem Kunden */
+	der Innentï¿½ren zu dem Kunden */
     private InnentuerControl innentuerControl;
     
     /**
@@ -33,8 +33,8 @@ public class KundeControl {
 	 * Grundfenster mit den Kundendaten.
 	 * @param primaryStage, Stage fuer das View-Objekt zu dem Grundfenster mit den Kundendaten
 	 */
-    public KundeControl(Stage primaryStage) { 
-        this.kundeModel = KundeModel.getInstance(); 
+    public KundeControl(Stage primaryStage) {
+		this.kundeModel = KundeModel.getInstance();
         this.kundeView = new KundeView(this, primaryStage, kundeModel);
     }
     

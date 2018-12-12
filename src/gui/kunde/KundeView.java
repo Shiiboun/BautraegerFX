@@ -2,6 +2,7 @@ package gui.kunde;
 
 import business.kunde.*;
 
+import gui.MySQLAccess;
 import javafx.geometry.*;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -9,6 +10,9 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.*;
 import javafx.scene.text.*;
 import javafx.stage.Stage;
+
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 
 /**
  * Klasse, welche das Grundfenster mit den Kundendaten bereitstellt.
@@ -36,8 +40,8 @@ public class KundeView{
     private  TextField txtEmail         = new TextField();
     private TextField txtTelefonnummer  = new TextField();
     private Button btnAnlegen	 	  	= new Button("Anlegen");
-    private Button btnAendern 	      	= new Button("Ändern");
-    private Button btnLoeschen 	 		= new Button("Löschen");
+    private Button btnAendern 	      	= new Button("ï¿½ndern");
+    private Button btnLoeschen 	 		= new Button("Lï¿½schen");
     private Button btnSuchen            = new Button("Suchen");
     private MenuBar mnBar 			  	= new MenuBar();
     private Menu mnSonderwuensche    	= new Menu("Sonderwuensche");
@@ -138,11 +142,21 @@ public class KundeView{
     }
     
     private void leseKunden(){
+		cleanKundenInput();
+		try {
+			PreparedStatement ps = MySQLAccess.GetInstance().getConnection().prepareStatement("SELECT * FROM bauplan INNER JOIN kunden USING(Kundennummer) WHERE bauplan.Plannummer = ?");
+			ps.setInt(1, cmbBxNummerHaus.getValue());
+			ResultSet rs = ps.executeQuery();
 
-        //TODO: Datenbankanbindung
-
-        zeigeFehlermeldung("Keine Verbindung", "Es wurde noch keine Verbindung zur Datenbank hergestellt.");
-
+			while (rs.next()) {
+				txtVorname.setText(rs.getString("Vorname"));
+				txtNachname.setText(rs.getString("Nachname"));
+				txtEmail.setText(rs.getString("E-Mail-Adresse"));
+				txtTelefonnummer.setText(rs.getString("Telefonnummer"));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
     }
     
     private void legeKundenAn(){
@@ -152,18 +166,32 @@ public class KundeView{
    	}
     
   	private void aendereKunden(){
-
-        //TODO: Datenbankanbindung
-
-        zeigeFehlermeldung("Keine Verbindung", "Es wurde noch keine Verbindung zur Datenbank hergestellt.");
+		try {
+			PreparedStatement ps = MySQLAccess.GetInstance().getConnection().prepareStatement("UPDATE kunden SET Vorname=?,Nachname=?,Telefonnummer=?,`E-Mail-Adresse`=? WHERE kundennummer = (SELECT kundennummer FROM bauplan WHERE plannummer = ?)");
+			ps.setString(1, txtVorname.getText());
+			ps.setString(2, txtNachname.getText());
+			ps.setString(3, txtTelefonnummer.getText());
+			ps.setString(4, txtEmail.getText());
+			ps.setInt(5, cmbBxNummerHaus.getValue());
+			ps.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 
    	}
   	
    	private void loescheKunden(){
 
-        //TODO: Datenbankanbindung
+		try {
+			PreparedStatement ps = MySQLAccess.GetInstance().getConnection().prepareStatement("DELETE FROM kunden WHERE kundennummer = (SELECT kundennummer FROM bauplan WHERE plannummer = ?)");
+			ps.setInt(1, cmbBxNummerHaus.getValue());
+			ps.executeUpdate();
 
-        zeigeFehlermeldung("Keine Verbindung", "Es wurde noch keine Verbindung zur Datenbank hergestellt.");
+			cleanKundenInput();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 
    	}
    	
@@ -178,6 +206,13 @@ public class KundeView{
         alert.setContentText(meldung);
         alert.show();
     }
+
+    private void cleanKundenInput() {
+		txtVorname.setText("");
+		txtNachname.setText("");
+		txtEmail.setText("");
+		txtTelefonnummer.setText("");
+	}
 
 }
 
