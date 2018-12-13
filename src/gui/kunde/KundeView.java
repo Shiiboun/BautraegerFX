@@ -1,6 +1,7 @@
 package gui.kunde;
 
 import business.kunde.*;
+import db.DBConnector;
 
 import javafx.geometry.*;
 import javafx.scene.Scene;
@@ -116,7 +117,6 @@ public class KundeView{
        		boolean isComboBoxEmpty = cmbBxNummerHaus.getSelectionModel().isEmpty();
        		if(!isComboBoxEmpty) {
 	       		int plannummer = cmbBxNummerHaus.getValue();
-	       		System.out.println("plannummer: " + plannummer);
 	       		kundeControl.oeffneBildControl(plannummer);
        		}
 	    });
@@ -127,7 +127,17 @@ public class KundeView{
     }
     
     private void holeInfoDachgeschoss(int plannummer){ 
-    	if(!this.kundeModel.hatDachgeschoss(plannummer)) {
+        // Ueberpruefung auf Dachgeschoss ohne Datenbankabfrage: 
+//    	if(!this.kundeModel.hatDachgeschoss(plannummer)) {
+//    		tvHatDG.setText("Hat kein Dachgeschoss");
+//    	}
+//    	else {
+//    		tvHatDG.setText("Hat Dachgeschoss");
+//    	}
+    	
+    	// Ueberpruefung auf Dachgeschoss mit Datenbankabfrage:
+    	DBConnector dbC = new DBConnector();
+    	if(!dbC.hatDachgeschoss(plannummer)) {
     		tvHatDG.setText("Hat kein Dachgeschoss");
     	}
     	else {

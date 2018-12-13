@@ -29,7 +29,6 @@ public final class BildModel{
 		
 		for (File file : listOfFiles) {
 		    if (file.isFile()) {
-		    	System.out.println(file.toURI().toString());
 		    	Image img = new Image(file.toURI().toString());
 		    	bilder.put(bilder.size(), img);
 		    }
@@ -72,7 +71,6 @@ public final class BildModel{
 	 */
 	public Image getBild(int plannummer){
 		if(bilder.containsKey(plannummer)) {
-			System.out.println("bilder.get(plannummer).toString(): " + bilder.get(plannummer).toString());
 			return this.bilder.get(plannummer);
 		}
 		else

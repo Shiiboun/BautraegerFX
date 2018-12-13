@@ -23,7 +23,7 @@ public class BildView extends BasisView{
     //---Anfang Attribute der grafischen Oberflaeche---
 	private BorderPane borderPane 		= new BorderPane();
 	private GridPane gridPane 			= new GridPane();
-	private Label lblHaus    	      	= new Label("Bild Haus von Haus mit Plannummer ");
+	private Label lblHaus    	      	= new Label("Bild von Haus mit Plannummer ");
     private ImageView imageView;
     private Image img;
     private boolean fehlerAufgetreten;
@@ -71,7 +71,6 @@ public class BildView extends BasisView{
 	 * macht das BildView-Objekt sichtbar.
 	 */
 	public void oeffneBildView(int plannummer){ 
-		System.out.println("plannummer in oeffneBildView: " + plannummer);
 		img = bildModel.getBild(plannummer);
         if(img != null) {
         	imageView = new ImageView(img);
