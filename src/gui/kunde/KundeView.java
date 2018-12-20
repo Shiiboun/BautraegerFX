@@ -41,6 +41,7 @@ public class KundeView{
     private MenuBar mnBar 			  	= new MenuBar();
     private Menu mnSonderwuensche    	= new Menu("Sonderw�nsche");
     private MenuItem mnItmGrundriss  	= new MenuItem("Grundrissvarianten");
+    private MenuItem mnItmParkett  	= new MenuItem("Parkettvarianten");
     private MenuItem mnItmSanitaerinstallation  	= new MenuItem("Sanitaerinstallationvarianten");
     private MenuItem mnItmAussenanlage  	= new MenuItem("Aussenanlagevarianten");
     private MenuItem mnItmInnentuer  	= new MenuItem("Innent�rvarianten");
@@ -100,6 +101,7 @@ public class KundeView{
 	    borderPane.setTop(mnBar);
 	    mnBar.getMenus().add(mnSonderwuensche);
 	    mnSonderwuensche.getItems().add(mnItmGrundriss);
+	    mnSonderwuensche.getItems().add(mnItmParkett);
 	    mnSonderwuensche.getItems().add(mnItmSanitaerinstallation);
 	    mnSonderwuensche.getItems().add(mnItmAussenanlage);
 	    mnSonderwuensche.getItems().add(mnItmInnentuer);
@@ -131,6 +133,9 @@ public class KundeView{
 	    });
       	mnItmSanitaerinstallation.setOnAction(aEvent-> {
  	        kundeControl.oeffneSanitaerinstallationControl(); 
+	    });
+      	mnItmParkett.setOnAction(aEvent-> {
+ 	        kundeControl.oeffneParkettControl(); 
 	    });
     }
 

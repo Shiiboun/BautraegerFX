@@ -5,6 +5,7 @@ import java.sql.SQLException;
 import business.kunde.Kunde;
 import business.kunde.KundeModel;
 import gui.grundriss.GrundrissControl;
+import gui.parkett.ParkettControl;
 import gui.sanitaerinstallation.SanitaerinstallationControl;
 import gui.aussenanlage.AussenanlageControl;
 import gui.Innentuer.InnentuerControl;
@@ -22,6 +23,9 @@ public class KundeControl {
     /* das GrundrissControl-Objekt fuer die Sonderwuensche
     zum Grundriss zu dem Kunden */
 	private GrundrissControl grundrissControl;
+	/* das ParkettControl-Objekt fuer die Sonderwuensche
+	 zum Parkett zu dem Kunden */
+	private ParkettControl parkettControl;
 	/* das SanitaerinstallationControl-Objekt fuer die Sonderwuensche
 	 zur Sanitaerinstallation zu dem Kunden */
 	private SanitaerinstallationControl sanitaerinstallationControl;
@@ -53,6 +57,16 @@ public class KundeControl {
     	this.grundrissControl.oeffneGrundrissView();
     }
     
+    /*
+     * erstellt, falls nicht vorhanden, ein Parkett-Control-Objekt.
+     * Das ParkettView wird sichtbar gemacht.
+     */
+    public void oeffneParkettControl(){
+    	if (this.parkettControl == null){
+    		this.parkettControl = new ParkettControl(kundeModel);
+      	}
+    	this.parkettControl.oeffneParkettView();
+    }
     /*
      * erstellt, falls nicht vorhanden, ein Sanitaerinstallation-Control-Objekt.
      * Das SanitaerinstallationView wird sichtbar gemacht.

@@ -63,6 +63,10 @@ public abstract class BasisView {
     	});
     }
     
+    protected void setStageHeight(double hoehe) {
+  		sonderwunschStage.setHeight(hoehe);
+  	}
+    
     protected GridPane getGridPaneSonderwunsch() {
   		return this.gridPane;
   	}
