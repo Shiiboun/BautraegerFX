@@ -7,7 +7,9 @@ public class Kunde {
 	private String nachname;
 	private String telefonnummer;
 	private String email;
-		  
+	private int kundennummer;
+	private int plannummer;
+
 	public int getHausnummer() {
 		return hausnummer;
 	}
@@ -47,5 +49,20 @@ public class Kunde {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	
+
+	public void setKundennummer(int kundennummer) {
+		this.kundennummer = kundennummer;
+	}
+
+	public int getKundennummer() {
+		return kundennummer;
+	}
+
+	public int getPlannummer() {
+		return plannummer;
+	}
+
+	public void setPlannummer(int plannummer) {
+		this.plannummer = plannummer;
+	}
 }
