@@ -85,6 +85,9 @@ public class AussenanlageView extends BasisView{
     	txt91.setEditable(false);
     	super.getGridPaneSonderwunsch().add(lbl91euro, 2, 1);
     	super.getGridPaneSonderwunsch().add(chckBx91, 3, 1);
+    	chckBx91.setOnAction(e -> {
+			aussenanlageControl.boxClicked(91, chckBx91.isSelected());
+		});
        	//9.2
        	super.getGridPaneSonderwunsch().add(lbl92, 0, 2);
     	super.getGridPaneSonderwunsch().add(txt92, 1, 2);
@@ -92,6 +95,9 @@ public class AussenanlageView extends BasisView{
     	txt92.setEditable(false);
     	super.getGridPaneSonderwunsch().add(lbl92euro, 2, 2);
     	super.getGridPaneSonderwunsch().add(chckBx92, 3, 2);
+    	chckBx92.setOnAction(e -> {
+			aussenanlageControl.boxClicked(92, chckBx92.isSelected());
+		});
        	//9.3
        	super.getGridPaneSonderwunsch().add(lbl93, 0, 3);
     	super.getGridPaneSonderwunsch().add(txt93, 1, 3);
@@ -99,6 +105,9 @@ public class AussenanlageView extends BasisView{
     	txt93.setEditable(false);
     	super.getGridPaneSonderwunsch().add(lbl93euro, 2, 3);
     	super.getGridPaneSonderwunsch().add(chckBx93, 3, 3);
+    	chckBx93.setOnAction(e -> {
+			aussenanlageControl.boxClicked(93, chckBx93.isSelected());
+		});
        	//9.4
        	super.getGridPaneSonderwunsch().add(lbl94, 0, 4);
     	super.getGridPaneSonderwunsch().add(txt94, 1, 4);
@@ -106,6 +115,9 @@ public class AussenanlageView extends BasisView{
     	txt94.setEditable(false);
     	super.getGridPaneSonderwunsch().add(lbl94euro, 2, 4);
     	super.getGridPaneSonderwunsch().add(chckBx94, 3, 4);
+    	chckBx94.setOnAction(e -> {
+			aussenanlageControl.boxClicked(94, chckBx94.isSelected());
+		});
        	//9.5
        	super.getGridPaneSonderwunsch().add(lbl95, 0, 5);
     	super.getGridPaneSonderwunsch().add(txt95, 1, 5);
@@ -113,6 +125,9 @@ public class AussenanlageView extends BasisView{
     	txt95.setEditable(false);
     	super.getGridPaneSonderwunsch().add(lbl95euro, 2, 5);
     	super.getGridPaneSonderwunsch().add(chckBx95, 3, 5);
+    	chckBx95.setOnAction(e -> {
+			aussenanlageControl.boxClicked(95, chckBx95.isSelected());
+		});
        	//9.6
        	super.getGridPaneSonderwunsch().add(lbl96, 0, 6);
     	super.getGridPaneSonderwunsch().add(txt96, 1, 6);
@@ -120,6 +135,9 @@ public class AussenanlageView extends BasisView{
     	txt96.setEditable(false);
     	super.getGridPaneSonderwunsch().add(lbl96euro, 2, 6);
     	super.getGridPaneSonderwunsch().add(chckBx96, 3, 6);
+    	chckBx96.setOnAction(e -> {
+			aussenanlageControl.boxClicked(96, chckBx96.isSelected());
+		});
        	//9.7
        	super.getGridPaneSonderwunsch().add(lbl97, 0, 7);
     	super.getGridPaneSonderwunsch().add(txt97, 1, 7);
@@ -127,6 +145,9 @@ public class AussenanlageView extends BasisView{
     	txt97.setEditable(false);
     	super.getGridPaneSonderwunsch().add(lbl97euro, 2, 7);
     	super.getGridPaneSonderwunsch().add(chckBx97, 3, 7);
+    	chckBx97.setOnAction(e -> {
+			aussenanlageControl.boxClicked(97, chckBx97.isSelected());
+		});
     }  
     
     /**
@@ -142,14 +163,12 @@ public class AussenanlageView extends BasisView{
     
  	/* berechnet den Preis der ausgesuchten Sonderwuensche und zeigt diesen an */
   	protected void berechneUndZeigePreisSonderwuensche(){
-  		// Es wird erst die Methode pruefeKonstellationSonderwuensche(int[] ausgewaehlteSw)
-  		// aus dem Control aufgerufen, dann der Preis berechnet.
+  		aussenanlageControl.berechneUndZeigePreisSonderwuensche();
   	}
   	
    	/* speichert die ausgesuchten Sonderwuensche in der Datenbank ab */
   	protected void speichereSonderwuensche(){
- 		// Es wird erst die Methode pruefeKonstellationSonderwuensche(int[] ausgewaehlteSw)
-  		// aus dem Control aufgerufen, dann die Sonderwuensche gespeichert.
+  		aussenanlageControl.speichereSonderwuensche();
   	}
   	
  	
