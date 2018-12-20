@@ -36,13 +36,14 @@ public class KundeView{
     private Label lblEmail    	= new Label("Email");
     private TextField txtEmail 	= new TextField();
     private Button btnAnlegen	 	  	= new Button("Anlegen");
-    private Button btnAendern 	      	= new Button("Ändern");
-    private Button btnLoeschen 	 		= new Button("Löschen");
+    private Button btnAendern 	      	= new Button("ï¿½ndern");
+    private Button btnLoeschen 	 		= new Button("Lï¿½schen");
     private MenuBar mnBar 			  	= new MenuBar();
-    private Menu mnSonderwuensche    	= new Menu("Sonderwünsche");
+    private Menu mnSonderwuensche    	= new Menu("Sonderwï¿½nsche");
     private MenuItem mnItmGrundriss  	= new MenuItem("Grundrissvarianten");
+    private MenuItem mnItmSanitaerinstallation  	= new MenuItem("Sanitaerinstallationvarianten");
     private MenuItem mnItmAussenanlage  	= new MenuItem("Aussenanlagevarianten");
-    private MenuItem mnItmInnentuer  	= new MenuItem("Innentürvarianten");
+    private MenuItem mnItmInnentuer  	= new MenuItem("Innentï¿½rvarianten");
     //-------Ende Attribute der grafischen Oberflaeche-------
 
     /**
@@ -99,6 +100,7 @@ public class KundeView{
 	    borderPane.setTop(mnBar);
 	    mnBar.getMenus().add(mnSonderwuensche);
 	    mnSonderwuensche.getItems().add(mnItmGrundriss);
+	    mnSonderwuensche.getItems().add(mnItmSanitaerinstallation);
 	    mnSonderwuensche.getItems().add(mnItmAussenanlage);
 	    mnSonderwuensche.getItems().add(mnItmInnentuer);
     }
@@ -126,6 +128,9 @@ public class KundeView{
 	    });
       	mnItmInnentuer.setOnAction(aEvent-> {
       		kundeControl.oeffneInnentuerControl();
+	    });
+      	mnItmSanitaerinstallation.setOnAction(aEvent-> {
+ 	        kundeControl.oeffneSanitaerinstallationControl(); 
 	    });
     }
 

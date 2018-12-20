@@ -5,6 +5,7 @@ import java.sql.SQLException;
 import business.kunde.Kunde;
 import business.kunde.KundeModel;
 import gui.grundriss.GrundrissControl;
+import gui.sanitaerinstallation.SanitaerinstallationControl;
 import gui.aussenanlage.AussenanlageControl;
 import gui.Innentuer.InnentuerControl;
 import javafx.stage.Stage;
@@ -19,13 +20,16 @@ public class KundeControl {
     // das Model-Objekt des Grundfensters mit den Kundendaten
     private KundeModel kundeModel;
     /* das GrundrissControl-Objekt fuer die Sonderwuensche
-       zum Grundriss zu dem Kunden */
-    private GrundrissControl grundrissControl;
+    zum Grundriss zu dem Kunden */
+	private GrundrissControl grundrissControl;
+	/* das SanitaerinstallationControl-Objekt fuer die Sonderwuensche
+	 zur Sanitaerinstallation zu dem Kunden */
+	private SanitaerinstallationControl sanitaerinstallationControl;
     /* das AussenanlageControl-Objekt fuer die Sonderwuensche
     	zur Aussenanlage zu dem Kunden */
     private AussenanlageControl aussenanlageControl;
     /* das AussenanlageControl-Objekt fuer die Sonderwuensche
-	der Innentüren zu dem Kunden */
+	der Innentï¿½ren zu dem Kunden */
     private InnentuerControl innentuerControl;
     
     /**
@@ -50,9 +54,16 @@ public class KundeControl {
     }
     
     /*
-     * erstellt, falls nicht vorhanden, ein Aussenanlage-Control-Objekt.
-     * Das AussenanlageView wird sichtbar gemacht.
+     * erstellt, falls nicht vorhanden, ein Sanitaerinstallation-Control-Objekt.
+     * Das SanitaerinstallationView wird sichtbar gemacht.
      */
+    public void oeffneSanitaerinstallationControl(){
+    	if (this.sanitaerinstallationControl == null){
+    		this.sanitaerinstallationControl = new SanitaerinstallationControl(kundeModel);
+      	}
+        this.sanitaerinstallationControl.oeffneSanitaerinstallationView();
+    }
+
     public void oeffneAussenanlageControl(){
     	if (this.aussenanlageControl == null){
     		this.aussenanlageControl = new AussenanlageControl(kundeModel);
