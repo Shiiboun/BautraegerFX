@@ -1,6 +1,8 @@
 package business.bild;
 
 import java.io.File;
+import java.util.Arrays;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Map;
 import javafx.scene.control.Alert;
@@ -26,6 +28,19 @@ public final class BildModel{
 		super();		
 		File folder = new File("BilderVonHaeusern/");
 		File[] listOfFiles = folder.listFiles();
+
+		if (listOfFiles != null && listOfFiles.length > 1) {
+			Arrays.sort(listOfFiles, new Comparator<File>() {
+			    @Override
+			    public int compare(File f1, File f2) {
+			        String name1 = f1.getName();
+			        String name2 = f2.getName();
+			        Integer num1 = Integer.valueOf(name1.substring(0, name1.indexOf(".")));
+			        Integer num2 = Integer.valueOf(name2.substring(0, name2.indexOf(".")));
+			        return num1.compareTo(num2);
+			    }
+			});
+		}
 		
 		for (File file : listOfFiles) {
 		    if (file.isFile()) {

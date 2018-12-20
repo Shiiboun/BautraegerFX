@@ -1,7 +1,6 @@
 package gui.kunde;
 
 import java.sql.SQLException;
-
 import business.kunde.Kunde;
 import business.kunde.KundeModel;
 import gui.grundriss.GrundrissControl;
