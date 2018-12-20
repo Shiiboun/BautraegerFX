@@ -6,6 +6,9 @@ import business.kunde.Kunde;
 import business.kunde.KundeModel;
 import gui.grundriss.GrundrissControl;
 import gui.parkett.ParkettControl;
+import gui.sanitaerinstallation.SanitaerinstallationControl;
+import gui.aussenanlage.AussenanlageControl;
+import gui.Innentuer.InnentuerControl;
 import javafx.stage.Stage;
 
 /**
@@ -23,6 +26,15 @@ public class KundeControl {
 	/* das ParkettControl-Objekt fuer die Sonderwuensche
 	 zum Parkett zu dem Kunden */
 	private ParkettControl parkettControl;
+	/* das SanitaerinstallationControl-Objekt fuer die Sonderwuensche
+	 zur Sanitaerinstallation zu dem Kunden */
+	private SanitaerinstallationControl sanitaerinstallationControl;
+    /* das AussenanlageControl-Objekt fuer die Sonderwuensche
+    	zur Aussenanlage zu dem Kunden */
+    private AussenanlageControl aussenanlageControl;
+    /* das AussenanlageControl-Objekt fuer die Sonderwuensche
+	der Innent�ren zu dem Kunden */
+    private InnentuerControl innentuerControl;
     
     /**
 	 * erzeugt ein ControlObjekt inklusive View-Objekt und Model-Objekt zum 
@@ -54,6 +66,34 @@ public class KundeControl {
     		this.parkettControl = new ParkettControl(kundeModel);
       	}
     	this.parkettControl.oeffneParkettView();
+    }
+    /*
+     * erstellt, falls nicht vorhanden, ein Sanitaerinstallation-Control-Objekt.
+     * Das SanitaerinstallationView wird sichtbar gemacht.
+     */
+    public void oeffneSanitaerinstallationControl(){
+    	if (this.sanitaerinstallationControl == null){
+    		this.sanitaerinstallationControl = new SanitaerinstallationControl(kundeModel);
+      	}
+        this.sanitaerinstallationControl.oeffneSanitaerinstallationView();
+    }
+
+    public void oeffneAussenanlageControl(){
+    	if (this.aussenanlageControl == null){
+    		this.aussenanlageControl = new AussenanlageControl(kundeModel);
+      	}
+    	this.aussenanlageControl.oeffneAussenanlageView();
+    }
+    
+    /*
+     * erstellt, falls nicht vorhanden, ein Innentuer-Control-Objekt.
+     * Das AussenanlageView wird sichtbar gemacht.
+     */
+    public void oeffneInnentuerControl(){
+    	if (this.innentuerControl == null){
+    		this.innentuerControl = new InnentuerControl(kundeModel);
+      	}
+    	this.innentuerControl.oeffneinnentuerView();
     }
     
 	/**
