@@ -30,7 +30,7 @@ public class KundeView{
 	private Label lblKunde    	      	= new Label("Kunde");
     private Label lblNummerHaus     	= new Label("Plannummer des Hauses");
     private ComboBox<Integer> 
-        cmbBxNummerHaus                 = new ComboBox<Integer>();
+         cmbBxNummerHaus                 = new ComboBox<Integer>();
     private Label lblVorname         	= new Label("Vorname");
     private Label lblNachname           = new Label("Nachname");
     private Label lblEmail              = new Label("Email");
@@ -40,13 +40,14 @@ public class KundeView{
     private  TextField txtEmail         = new TextField();
     private TextField txtTelefonnummer  = new TextField();
     private Button btnAnlegen	 	  	= new Button("Anlegen");
-    private Button btnAendern 	      	= new Button("ï¿½ndern");
-    private Button btnLoeschen 	 		= new Button("Lï¿½schen");
+    private Button btnAendern 	      	= new Button("Ändern");
+    private Button btnLoeschen 	 		= new Button("Löschen");
     private Button btnSuchen            = new Button("Suchen");
     private MenuBar mnBar 			  	= new MenuBar();
     private Menu mnSonderwuensche    	= new Menu("Sonderwuensche");
     private MenuItem mnItmGrundriss  	= new MenuItem("Grundrissvarianten");
-    //-------Ende Attribute der grafischen Oberflaeche-------
+	private MenuItem mnItmAussenanlage  	= new MenuItem("Aussenanlagevarianten");
+	//-------Ende Attribute der grafischen Oberflaeche-------
   
     /**
      * erzeugt ein KundeView-Objekt und initialisiert die Steuerelemente der Maske
@@ -105,7 +106,8 @@ public class KundeView{
 	    borderPane.setTop(mnBar);
 	    mnBar.getMenus().add(mnSonderwuensche);
 	    mnSonderwuensche.getItems().add(mnItmGrundriss);
-    }
+		mnSonderwuensche.getItems().add(mnItmAussenanlage);
+	}
 
     /* initialisiert die Listener zu den Steuerelementen auf de Maske */
     private void initListener(){
@@ -128,6 +130,9 @@ public class KundeView{
       	mnItmGrundriss.setOnAction(aEvent-> {
  	        kundeControl.oeffneGrundrissControl(); 
 	    });
+		mnItmAussenanlage.setOnAction(aEvent-> {
+			kundeControl.oeffneAussenanlageControl();
+		});
     }
 
     private void sucheKunden(){
@@ -153,6 +158,15 @@ public class KundeView{
 				txtNachname.setText(rs.getString("Nachname"));
 				txtEmail.setText(rs.getString("E-Mail-Adresse"));
 				txtTelefonnummer.setText(rs.getString("Telefonnummer"));
+
+				Kunde kunde = new Kunde();
+				kunde.setKundennummer(rs.getInt("Kundennummer"));
+				kunde.setPlannummer(rs.getInt("Plannummer"));
+				kunde.setVorname(rs.getString("Vorname"));
+				kunde.setNachname(rs.getString("Nachname"));
+				kunde.setEmail(rs.getString("E-Mail-Adresse"));
+				kunde.setTelefonnummer(rs.getString("Telefonnummer"));
+				kundeModel.speichereKunden(kunde);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -160,9 +174,12 @@ public class KundeView{
     }
     
     private void legeKundenAn(){
-         Kunde kunde = null;
-         // Objekt kunde fuellen
-         kundeControl.speichereKunden(kunde);
+		Kunde kunde = new Kunde();
+		kunde.setVorname(txtVorname.getText());
+		kunde.setNachname(txtNachname.getText());
+		kunde.setEmail(txtEmail.getText());
+		kunde.setTelefonnummer(txtTelefonnummer.getText());
+		kundeControl.speichereKunden(kunde);
    	}
     
   	private void aendereKunden(){
@@ -177,7 +194,6 @@ public class KundeView{
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
    	}
   	
    	private void loescheKunden(){
@@ -214,6 +230,9 @@ public class KundeView{
 		txtTelefonnummer.setText("");
 	}
 
+	public int getPlannummer() {
+		return cmbBxNummerHaus.getValue();
+	}
 }
 
 

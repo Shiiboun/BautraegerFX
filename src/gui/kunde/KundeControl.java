@@ -90,4 +90,8 @@ public class KundeControl {
                 "Unbekannter Fehler");
     	}
     }
+
+    public int getPlannummer() {
+    	return kundeView.getPlannummer();
+	}
 }
