@@ -40,15 +40,19 @@ public class KundeView{
     private  TextField txtEmail         = new TextField();
     private TextField txtTelefonnummer  = new TextField();
     private Button btnAnlegen	 	  	= new Button("Anlegen");
-    private Button btnAendern 	      	= new Button("Ändern");
-    private Button btnLoeschen 	 		= new Button("Löschen");
-    private Button btnSuchen            = new Button("Suchen");
+
+    private Button btnSuchen            = new Button("Suchen");  
+    private Button btnAendern 	      	= new Button("Ã„ndern");
+    private Button btnLoeschen 	 		= new Button("LÃ¶schen");
     private MenuBar mnBar 			  	= new MenuBar();
-    private Menu mnSonderwuensche    	= new Menu("Sonderwuensche");
+    private Menu mnSonderwuensche    	= new Menu("SonderwÃ¼nsche");
     private MenuItem mnItmGrundriss  	= new MenuItem("Grundrissvarianten");
-	private MenuItem mnItmAussenanlage  	= new MenuItem("Aussenanlagevarianten");
-	//-------Ende Attribute der grafischen Oberflaeche-------
-  
+    private MenuItem mnItmParkett  	= new MenuItem("Parkettvarianten");
+    private MenuItem mnItmSanitaerinstallation  	= new MenuItem("Sanitaerinstallationvarianten");
+    private MenuItem mnItmAussenanlage  	= new MenuItem("Aussenanlagevarianten");
+    private MenuItem mnItmInnentuer  	= new MenuItem("Innentï¿½rvarianten");
+    //-------Ende Attribute der grafischen Oberflaeche-------
+
     /**
      * erzeugt ein KundeView-Objekt und initialisiert die Steuerelemente der Maske
      * @param kundeControl KundeControl, enthaelt das zugehoerige Control
@@ -106,8 +110,11 @@ public class KundeView{
 	    borderPane.setTop(mnBar);
 	    mnBar.getMenus().add(mnSonderwuensche);
 	    mnSonderwuensche.getItems().add(mnItmGrundriss);
-		mnSonderwuensche.getItems().add(mnItmAussenanlage);
-	}
+	    mnSonderwuensche.getItems().add(mnItmParkett);
+	    mnSonderwuensche.getItems().add(mnItmSanitaerinstallation);
+	    mnSonderwuensche.getItems().add(mnItmAussenanlage);
+	    mnSonderwuensche.getItems().add(mnItmInnentuer);
+    }
 
     /* initialisiert die Listener zu den Steuerelementen auf de Maske */
     private void initListener(){
@@ -130,9 +137,17 @@ public class KundeView{
       	mnItmGrundriss.setOnAction(aEvent-> {
  	        kundeControl.oeffneGrundrissControl(); 
 	    });
+
 		mnItmAussenanlage.setOnAction(aEvent-> {
 			kundeControl.oeffneAussenanlageControl();
 		});
+
+      	mnItmSanitaerinstallation.setOnAction(aEvent-> {
+ 	        kundeControl.oeffneSanitaerinstallationControl(); 
+	    });
+      	mnItmParkett.setOnAction(aEvent-> {
+ 	        kundeControl.oeffneParkettControl(); 
+	    });
     }
 
     private void sucheKunden(){
