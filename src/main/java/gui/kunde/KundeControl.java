@@ -8,6 +8,7 @@ import gui.grundriss.GrundrissControl;
 import gui.parkett.ParkettControl;
 import gui.sanitaerinstallation.SanitaerinstallationControl;
 import gui.aussenanlage.AussenanlageControl;
+import gui.bild.BildControl;
 import gui.Innentuer.InnentuerControl;
 import javafx.stage.Stage;
 
@@ -35,6 +36,9 @@ public class KundeControl {
     /* das AussenanlageControl-Objekt fuer die Sonderwuensche
 	der Innent�ren zu dem Kunden */
     private InnentuerControl innentuerControl;
+    /* das BildControl-Objekt fuer das Fenster
+	des Bildes vom Haus */
+    private BildControl bildControl;
     
     /**
 	 * erzeugt ein ControlObjekt inklusive View-Objekt und Model-Objekt zum 
@@ -94,6 +98,17 @@ public class KundeControl {
     		this.innentuerControl = new InnentuerControl(kundeModel);
       	}
     	this.innentuerControl.oeffneinnentuerView();
+    }
+    
+    /*
+     * erstellt, falls nicht vorhanden, ein Grundriss-Control-Objekt.
+     * Das GrundrissView wird sichtbar gemacht.
+     */
+    public void oeffneBildControl(int plannummer){
+    	if (this.bildControl == null){
+    		this.bildControl = new BildControl(kundeModel);
+      	}
+    	this.bildControl.oeffneBildView(plannummer);
     }
     
 	/**

@@ -1,7 +1,7 @@
 package gui.kunde;
 
 import business.kunde.*;
-
+import db.DBConnector;
 import gui.MySQLAccess;
 import javafx.geometry.*;
 import javafx.scene.Scene;
@@ -40,10 +40,10 @@ public class KundeView{
     private  TextField txtEmail         = new TextField();
     private TextField txtTelefonnummer  = new TextField();
     private Button btnAnlegen	 	  	= new Button("Anlegen");
-
     private Button btnSuchen            = new Button("Suchen");  
     private Button btnAendern 	      	= new Button("Ändern");
     private Button btnLoeschen 	 		= new Button("Löschen");
+    private Button btnBildAnzeigen	 	= new Button("Bild vom Haus anzeigen");
     private MenuBar mnBar 			  	= new MenuBar();
     private Menu mnSonderwuensche    	= new Menu("Sonderwünsche");
     private MenuItem mnItmGrundriss  	= new MenuItem("Grundrissvarianten");
@@ -51,6 +51,11 @@ public class KundeView{
     private MenuItem mnItmSanitaerinstallation  	= new MenuItem("Sanitaerinstallationvarianten");
     private MenuItem mnItmAussenanlage  	= new MenuItem("Aussenanlagevarianten");
     private MenuItem mnItmInnentuer  	= new MenuItem("Innent�rvarianten");
+    /* Text, welcher aussagt, ob das Haus mit der selektierten Plannummer
+     * ein Dachgeschoss besitzt oder nicht
+    */
+    private Text tvHatDG = new Text();
+    
     //-------Ende Attribute der grafischen Oberflaeche-------
 
     /**
@@ -86,6 +91,7 @@ public class KundeView{
 	    lblKunde.setFont(Font.font("Arial", FontWeight.BOLD, 24));
 	    gridPane.add(lblNummerHaus, 0, 2);
 	    gridPane.add(cmbBxNummerHaus, 1, 2);
+	    gridPane.add(tvHatDG, 1, 1);
 	    cmbBxNummerHaus.setMinSize(150,  25);
 	    cmbBxNummerHaus.setItems(this.kundeModel.getPlannummern());
 	    gridPane.add(lblVorname, 0, 3);
@@ -106,6 +112,8 @@ public class KundeView{
 	    btnLoeschen.setMinSize(150,  25);
 	    gridPane.add(btnSuchen,1,8);
 	    btnSuchen.setMinSize(150,  25);
+	    gridPane.add(btnBildAnzeigen, 2, 2);
+	    btnBildAnzeigen.setMinSize(150,  25);
 	    // MenuBar und Menu
 	    borderPane.setTop(mnBar);
 	    mnBar.getMenus().add(mnSonderwuensche);
@@ -119,7 +127,8 @@ public class KundeView{
     /* initialisiert die Listener zu den Steuerelementen auf de Maske */
     private void initListener(){
     	cmbBxNummerHaus.setOnAction(aEvent-> {
-    		 holeInfoDachgeschoss();  
+    		 int plannummer = cmbBxNummerHaus.getValue();
+  		 	 holeInfoDachgeschoss(plannummer);  
     		 leseKunden();
      	});
        	btnAnlegen.setOnAction(aEvent-> {
@@ -134,6 +143,13 @@ public class KundeView{
         btnSuchen.setOnAction(aEvent-> {
             sucheKunden();
         });
+        btnBildAnzeigen.setOnAction(aEvent-> { 
+       		boolean isComboBoxEmpty = cmbBxNummerHaus.getSelectionModel().isEmpty();
+       		if(!isComboBoxEmpty) {
+	       		int plannummer = cmbBxNummerHaus.getValue();
+	       		kundeControl.oeffneBildControl(plannummer);
+       		}
+	    });
       	mnItmGrundriss.setOnAction(aEvent-> {
  	        kundeControl.oeffneGrundrissControl(); 
 	    });
@@ -158,7 +174,23 @@ public class KundeView{
 
     }
 
-    private void holeInfoDachgeschoss(){ 
+    private void holeInfoDachgeschoss(int plannummer){ 
+        // Ueberpruefung auf Dachgeschoss ohne Datenbankabfrage: 
+//    	if(!this.kundeModel.hatDachgeschoss(plannummer)) {
+//    		tvHatDG.setText("Hat kein Dachgeschoss");
+//    	}
+//    	else {
+//    		tvHatDG.setText("Hat Dachgeschoss");
+//    	}
+    	
+    	// Ueberpruefung auf Dachgeschoss mit Datenbankabfrage:
+    	DBConnector dbC = new DBConnector();
+    	if(!dbC.hatDachgeschoss(plannummer)) {
+    		tvHatDG.setText("Hat kein Dachgeschoss");
+    	}
+    	else {
+    		tvHatDG.setText("Hat Dachgeschoss");
+    	}
     }
     
     private void leseKunden(){

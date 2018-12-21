@@ -15,7 +15,7 @@ public class Main extends Application {
 
         new KundeControl(primaryStage);
 
-        MySQLAccess.init("localhost","root", "", "bautraegerfx");
+        MySQLAccess.init("localhost","root", "root", "bautraegerfx");
 
         try {
             MySQLAccess.GetInstance().getConnection().prepareStatement("SELECT * FROM kunde");

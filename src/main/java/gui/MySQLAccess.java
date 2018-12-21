@@ -18,7 +18,7 @@ public class MySQLAccess {
 
     public Connection getConnection() throws Exception {
         if (connect == null) {
-            Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
+            Class.forName("com.mysql.jdbc.Driver").newInstance();
             connect = DriverManager
                     .getConnection("jdbc:mysql://" + this.host + ":3306/" + this.database + "?"
                             + "user=" + this.user + "&password=" + this.passwd + "&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC");
