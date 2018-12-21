@@ -1,6 +1,6 @@
-package gui.sanitaerinstallation;
+package main.java.gui.sanitaerinstallation;
 
-import gui.basis.BasisView;
+import main.java.gui.basis.BasisView;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 

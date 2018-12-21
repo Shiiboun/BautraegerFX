@@ -1,6 +1,6 @@
-package db;
+package main.java.db;
 
-import business.kunde.Kunde;
+import main.java.business.kunde.Kunde;
 
 import java.sql.*;
 

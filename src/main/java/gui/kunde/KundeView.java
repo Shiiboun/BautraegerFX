@@ -1,8 +1,8 @@
-package gui.kunde;
+package main.java.gui.kunde;
 
-import business.kunde.*;
+import main.java.business.kunde.*;
 
-import gui.MySQLAccess;
+import main.java.gui.MySQLAccess;
 import javafx.geometry.*;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -42,15 +42,16 @@ public class KundeView{
     private Button btnAnlegen	 	  	= new Button("Anlegen");
 
     private Button btnSuchen            = new Button("Suchen");  
-    private Button btnAendern 	      	= new Button("Ã„ndern");
-    private Button btnLoeschen 	 		= new Button("LÃ¶schen");
+    private Button btnAendern 	      	= new Button("Ändern");
+    private Button btnLoeschen 	 		= new Button("Löschen");
     private MenuBar mnBar 			  	= new MenuBar();
-    private Menu mnSonderwuensche    	= new Menu("SonderwÃ¼nsche");
+    private Menu mnSonderwuensche    	= new Menu("Sonderwünsche");
     private MenuItem mnItmGrundriss  	= new MenuItem("Grundrissvarianten");
     private MenuItem mnItmParkett  	= new MenuItem("Parkettvarianten");
     private MenuItem mnItmSanitaerinstallation  	= new MenuItem("Sanitaerinstallationvarianten");
     private MenuItem mnItmAussenanlage  	= new MenuItem("Aussenanlagevarianten");
-    private MenuItem mnItmInnentuer  	= new MenuItem("Innentï¿½rvarianten");
+    private MenuItem mnItmInnentuer  	= new MenuItem("Innentuervarianten");
+    private MenuItem mnItmFliesen  	= new MenuItem("Fliesenvarianten");
     //-------Ende Attribute der grafischen Oberflaeche-------
 
     /**
@@ -114,6 +115,7 @@ public class KundeView{
 	    mnSonderwuensche.getItems().add(mnItmSanitaerinstallation);
 	    mnSonderwuensche.getItems().add(mnItmAussenanlage);
 	    mnSonderwuensche.getItems().add(mnItmInnentuer);
+	    mnSonderwuensche.getItems().add(mnItmFliesen);
     }
 
     /* initialisiert die Listener zu den Steuerelementen auf de Maske */
@@ -147,6 +149,9 @@ public class KundeView{
 	    });
       	mnItmParkett.setOnAction(aEvent-> {
  	        kundeControl.oeffneParkettControl(); 
+	    });
+      	mnItmFliesen.setOnAction(aEvent-> {
+      		kundeControl.oeffneFliesenControl();
 	    });
     }
 

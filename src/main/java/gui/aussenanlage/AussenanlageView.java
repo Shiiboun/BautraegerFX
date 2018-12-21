@@ -1,6 +1,6 @@
-package gui.aussenanlage;
+package main.java.gui.aussenanlage;
 
-import gui.basis.BasisView;
+import main.java.gui.basis.*;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 

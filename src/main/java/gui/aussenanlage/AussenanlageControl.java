@@ -1,7 +1,7 @@
-package gui.aussenanlage;
+package main.java.gui.aussenanlage;
 
-import business.kunde.KundeModel;
-import gui.MySQLAccess;
+import main.java.business.kunde.KundeModel;
+import main.java.gui.MySQLAccess;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 

@@ -1,14 +1,15 @@
-package gui.kunde;
+package main.java.gui.kunde;
 
 import java.sql.SQLException;
 
-import business.kunde.Kunde;
-import business.kunde.KundeModel;
-import gui.grundriss.GrundrissControl;
-import gui.parkett.ParkettControl;
-import gui.sanitaerinstallation.SanitaerinstallationControl;
-import gui.aussenanlage.AussenanlageControl;
-import gui.Innentuer.InnentuerControl;
+import main.java.business.kunde.Kunde;
+import main.java.business.kunde.KundeModel;
+import main.java.gui.grundriss.GrundrissControl;
+import main.java.gui.parkett.ParkettControl;
+import main.java.gui.sanitaerinstallation.SanitaerinstallationControl;
+import main.java.gui.aussenanlage.AussenanlageControl;
+import main.java.gui.Innentuer.InnentuerControl;
+import main.java.gui.fliesen.FliesenControl;
 import javafx.stage.Stage;
 
 /**
@@ -35,6 +36,9 @@ public class KundeControl {
     /* das AussenanlageControl-Objekt fuer die Sonderwuensche
 	der Innent�ren zu dem Kunden */
     private InnentuerControl innentuerControl;
+    /* das FliesenControl-Objekt fuer die Sonderwuensche
+	zu Fliesen */
+    private FliesenControl fliesenControl;
     
     /**
 	 * erzeugt ein ControlObjekt inklusive View-Objekt und Model-Objekt zum 
@@ -94,6 +98,13 @@ public class KundeControl {
     		this.innentuerControl = new InnentuerControl(kundeModel);
       	}
     	this.innentuerControl.oeffneinnentuerView();
+    }
+    
+    public void oeffneFliesenControl(){
+    	if (this.fliesenControl == null){
+    		this.fliesenControl = new FliesenControl(kundeModel);
+      	}
+    	this.fliesenControl.oeffneFliesenView();
     }
     
 	/**

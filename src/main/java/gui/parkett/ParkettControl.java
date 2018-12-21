@@ -1,6 +1,6 @@
-package gui.parkett;
+package main.java.gui.parkett;
 
-import business.kunde.KundeModel;
+import main.java.business.kunde.KundeModel;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 

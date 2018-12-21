@@ -1,6 +1,6 @@
-package test;
+package main.java.test;
 
-import business.kunde.Kunde;
+import main.java.business.kunde.Kunde;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

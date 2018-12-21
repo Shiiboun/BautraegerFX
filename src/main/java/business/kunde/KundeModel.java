@@ -1,4 +1,4 @@
-package business.kunde;
+package main.java.business.kunde;
 
 import java.sql.SQLException;
 import javafx.collections.*;

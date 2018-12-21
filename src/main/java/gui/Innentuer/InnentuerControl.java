@@ -1,6 +1,6 @@
-package gui.Innentuer;
+package main.java.gui.Innentuer;
 
-import business.kunde.KundeModel;
+import main.java.business.kunde.KundeModel;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 

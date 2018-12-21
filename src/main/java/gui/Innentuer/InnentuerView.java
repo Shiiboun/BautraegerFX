@@ -1,7 +1,7 @@
-package gui.Innentuer;
+package main.java.gui.Innentuer;
 
 
-import gui.basis.BasisView;
+import main.java.gui.basis.BasisView;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
