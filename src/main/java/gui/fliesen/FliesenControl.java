@@ -21,7 +21,7 @@ public final class FliesenControl {
 	// das View-Objekt des Aussenanlage-Fensters
 	private FliesenView fliesenView;
 	private KundeModel kundeModel;
-	private boolean testphase = true; // ----------------------------------------------------------------------------------------- Testschalter
+	private boolean testphase = false; // ----------------------------------------------------------------------------------------- Testschalter
 	
 	public FliesenControl(KundeModel kundeModel){  
 	   	Stage stageFliesen = new Stage();
@@ -70,7 +70,7 @@ public final class FliesenControl {
 			while (rs1.next()) {
 				int swInDB = rs1.getInt("SonderwunschID");
 				if(!wunschFliesen.contains(swInDB)) {
-					//in Datenbank, aber wunsch soll gelÃ¶scht werden
+					//in Datenbank, aber wunsch soll gelöscht werden
 					PreparedStatement ps = MySQLAccess.GetInstance().getConnection().prepareStatement("DELETE FROM bauplan_sonderwuensche WHERE Plannummer = ? AND SonderwunschID = ?");
 					ps.setInt(1, kundeModel.getKunde().getPlannummer());
 					ps.setInt(2, swInDB);
@@ -83,7 +83,7 @@ public final class FliesenControl {
 			}
 
 			for (int i = 0; i < wunschFliesen.size(); i++) {
-				// Alle vebleibenden WÃ¼nsche in Datenbank speichern
+				// Alle vebleibenden Wünsche in Datenbank speichern
 				PreparedStatement ps = MySQLAccess.GetInstance().getConnection().prepareStatement("INSERT INTO bauplan_sonderwuensche (Plannummer, SonderwunschID, Anzahl) VALUES (?,?,?)");
 				ps.setInt(1, kundeModel.getKunde().getPlannummer());
 				ps.setInt(2, wunschFliesen.get(i));
