@@ -91,4 +91,21 @@ public final class FliesenControl {
 		}
 		
 	}
+	
+	public int dachgeschoss() {
+		int dg = 0;
+		try {
+			PreparedStatement ps = MySQLAccess.GetInstance().getConnection().prepareStatement("SELECT Dachgeschoss FROM bauplan WHERE Plannummer = ?");
+			ps.setInt(1, kundeModel.getKunde().getPlannummer());
+			ResultSet rs = ps.executeQuery();
+	
+			 while(rs.next()) {
+				 dg = rs.getInt("Dachgeschoss");
+			 }
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return dg;
+	}
 }

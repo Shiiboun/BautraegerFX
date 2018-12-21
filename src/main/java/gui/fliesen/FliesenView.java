@@ -145,52 +145,74 @@ import javafx.stage.Stage;
 	    
 	 	/* berechnet den Preis der ausgesuchten Fliesen und zeigt diesen an */
 	  	protected void berechneUndZeigePreisSonderwuensche(){
-	  		int preis = 0;
-			int[] wunsch = new int[6];
-
-	  		if (chckBx91.isSelected())
-			{
-	  			wunsch[0] = 1;
-				preis += Integer.parseInt(txt91.getText());
-			}
-			if (chckBx92.isSelected())
-			{
-				wunsch[1] = 1;
-				preis += Integer.parseInt(txt92.getText());
-			}
-			if (chckBx93.isSelected())
-			{
-				wunsch[2] = 1;
-				preis += Integer.parseInt(txt93.getText());
-			}
-			if (chckBx94.isSelected())
-			{
-				wunsch[3] = 1;
-				preis += Integer.parseInt(txt94.getText());
-			}
-			if (chckBx95.isSelected())
-			{
-				wunsch[4] = 1;
-				preis += Integer.parseInt(txt95.getText());
-			}
-			if (chckBx96.isSelected())
-			{
-				wunsch[5] = 1;
-				preis += Integer.parseInt(txt96.getText());
-			}
-			
+	  		int dg = this.fliesenControl.dachgeschoss();
 	  		
-  			Alert alert = new Alert(AlertType.INFORMATION);
-  	        alert.setTitle("Fliesen Preise");
-  	        alert.setHeaderText("Der Preis Ihrer Wunschfliesen wurde berechnet");
-  	        alert.setContentText("Preis: "  + preis+ "€");
-  	        alert.show();
+	  		if ((dg == 0)&&((chckBx95.isSelected()||(chckBx96.isSelected())))){
+	  			Alert alert = new Alert(AlertType.ERROR);
+	  	        alert.setTitle("Fliesen Preise");
+	  	        alert.setHeaderText("Fehler!");
+	  	        alert.setContentText("Sie haben gar kein Dachgeschoss!");
+	  	        alert.show();
+	  		} else {
+	  			int preis = 0;
+				int[] wunsch = new int[6];
+
+		  		if (chckBx91.isSelected())
+				{
+		  			wunsch[0] = 1;
+					preis += Integer.parseInt(txt91.getText());
+				}
+				if (chckBx92.isSelected())
+				{
+					wunsch[1] = 1;
+					preis += Integer.parseInt(txt92.getText());
+				}
+				if (chckBx93.isSelected())
+				{
+					wunsch[2] = 1;
+					preis += Integer.parseInt(txt93.getText());
+				}
+				if (chckBx94.isSelected())
+				{
+					wunsch[3] = 1;
+					preis += Integer.parseInt(txt94.getText());
+				}
+				if (chckBx95.isSelected())
+				{
+					wunsch[4] = 1;
+					preis += Integer.parseInt(txt95.getText());
+				}
+				if (chckBx96.isSelected())
+				{
+					wunsch[5] = 1;
+					preis += Integer.parseInt(txt96.getText());
+				}
+				
+		  		
+	  			Alert alert = new Alert(AlertType.INFORMATION);
+	  	        alert.setTitle("Fliesen Preise");
+	  	        alert.setHeaderText("Der Preis Ihrer Wunschfliesen wurde berechnet");
+	  	        alert.setContentText("Preis: "  + preis+ "€");
+	  	        alert.show();
+	  		}
+	  		
+	  		
 			
 	  	}
 	  	
 	   	/* speichert die ausgesuchten Sonderwuensche in der Datenbank ab */
 	  	protected void speichereSonderwuensche(){
-	  		fliesenControl.speichereFliesen(getWunschFliesen());
+	  		int dg = this.fliesenControl.dachgeschoss();
+	  		
+	  		if ((dg == 0)&&((chckBx95.isSelected()||(chckBx96.isSelected())))){
+	  			Alert alert = new Alert(AlertType.ERROR);
+	  	        alert.setTitle("Fliesen Preise");
+	  	        alert.setHeaderText("Fehler!");
+	  	        alert.setContentText("Sie haben gar kein Dachgeschoss!");
+	  	        alert.show();
+	  		} else {
+	  			fliesenControl.speichereFliesen(getWunschFliesen());
+	  		}
 	  	}
 	  	
 	  	private List<Integer> getWunschFliesen() {
