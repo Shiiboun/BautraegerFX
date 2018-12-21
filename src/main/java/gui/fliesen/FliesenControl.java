@@ -23,7 +23,8 @@ public final class FliesenControl {
 	private KundeModel kundeModel;
 	private boolean testphase = false; // ----------------------------------------------------------------------------------------- Testschalter
 	
-	public FliesenControl(KundeModel kundeModel){  
+	public FliesenControl(KundeModel kundeModel){ 
+		this.kundeModel = kundeModel;
 	   	Stage stageFliesen = new Stage();
     	stageFliesen.initModality(Modality.APPLICATION_MODAL);
     	this.fliesenView = new FliesenView(this, stageFliesen);
@@ -37,19 +38,13 @@ public final class FliesenControl {
 		ArrayList fliese = new ArrayList();
 		
 		try {
-			Statement stmt = MySQLAccess.GetInstance().getConnection().createStatement();
-			ResultSet rs;
-			if (testphase != true) {
-				kundeModel.getKunde().getPlannummer();
-				rs = stmt.executeQuery("SELECT * FROM bauplan_sonderwuensche WHERE (Plannummer = ?) AND (SonderwunschID BETWEEN 71 AND 76)");
-			} else {
-			// Testwert
-				rs = stmt.executeQuery("SELECT * FROM bauplan_sonderwuensche WHERE (Plannummer = 1) AND (SonderwunschID BETWEEN 1 AND 4)");
-			}
+			PreparedStatement ps = MySQLAccess.GetInstance().getConnection().prepareStatement("SELECT * FROM bauplan_sonderwuensche WHERE Plannummer = ?");
+			ps.setInt(1, kundeModel.getKunde().getPlannummer());
+			ResultSet rs = ps.executeQuery();
+	
 			 while(rs.next()) {
-				 System.out.println(rs.getString(2));
 				 fliese.add(rs.getInt("SonderwunschID"));
-			}
+		}
 
 		} catch (Exception e) {
 			e.printStackTrace();

@@ -134,12 +134,12 @@ import javafx.stage.Stage;
 	    // setzt die Checkboxen je nach Sonderwünschen
 	    public void setFliesen(int fnr) {
 			switch(fnr) {
-				case 0: chckBx91.setSelected(true); break;
-				case 1: chckBx92.setSelected(true); break;
-				case 2: chckBx93.setSelected(true); break;
-				case 3: chckBx94.setSelected(true); break;
-				case 4: chckBx95.setSelected(true); break;
-				case 5: chckBx96.setSelected(true); break;
+				case 71: chckBx91.setSelected(true); break;
+				case 72: chckBx92.setSelected(true); break;
+				case 73: chckBx93.setSelected(true); break;
+				case 74: chckBx94.setSelected(true); break;
+				case 75: chckBx95.setSelected(true); break;
+				case 76: chckBx96.setSelected(true); break;
 			}
 		}
 	    
@@ -196,12 +196,12 @@ import javafx.stage.Stage;
 	  	private List<Integer> getWunschFliesen() {
 			List<Integer> wunschFliesen = new ArrayList<>();
 
-			if (chckBx91.isSelected()) wunschFliesen.add(0);
-			if (chckBx92.isSelected()) wunschFliesen.add(1);
-			if (chckBx93.isSelected()) wunschFliesen.add(2);
-			if (chckBx94.isSelected()) wunschFliesen.add(3);
-			if (chckBx95.isSelected()) wunschFliesen.add(4);
-			if (chckBx96.isSelected()) wunschFliesen.add(5);
+			if (chckBx91.isSelected()) wunschFliesen.add(71);
+			if (chckBx92.isSelected()) wunschFliesen.add(72);
+			if (chckBx93.isSelected()) wunschFliesen.add(73);
+			if (chckBx94.isSelected()) wunschFliesen.add(74);
+			if (chckBx95.isSelected()) wunschFliesen.add(75);
+			if (chckBx96.isSelected()) wunschFliesen.add(76);
 			return wunschFliesen;
 		}
 	  	
