@@ -8,7 +8,7 @@ import java.util.Set;
 import javafx.collections.*;
   
 /** 
- * Klasse, welche das Model des Grundfensters mit den Kundendaten enthaelt.
+ * Klasse, welche das Model des Grundfensters mit den Kundendaten enthaelt
  */
 public final class KundeModel {
 	
