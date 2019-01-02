@@ -17,4 +17,4 @@ DoD:
 Sprit Goal (yay)
 * DoD erfüllen, Kundendaten anzeigen und speichern können, Bilder anzeigen
 
-[Akzeptanzkriterien](https://github.com/Shiiboun/BautraegerFX/wiki/Akzeptanzkriterien)
+[Akzeptanzkriterien](https://github.com/Shiiboun/BautraegerFX/wiki/Akzeptanzkriterien
