@@ -41,16 +41,17 @@ public class KundeView{
     private TextField txtTelefonnummer  = new TextField();
     private Button btnAnlegen	 	  	= new Button("Anlegen");
     private Button btnSuchen            = new Button("Suchen");  
-    private Button btnAendern 	      	= new Button("Ã„ndern");
-    private Button btnLoeschen 	 		= new Button("LÃ¶schen");
+    private Button btnAendern 	      	= new Button("Ändern");
+    private Button btnLoeschen 	 		= new Button("Löschen");
     private Button btnBildAnzeigen	 	= new Button("Bild vom Haus anzeigen");
     private MenuBar mnBar 			  	= new MenuBar();
-    private Menu mnSonderwuensche    	= new Menu("SonderwÃ¼nsche");
+    private Menu mnSonderwuensche    	= new Menu("Sonderwünsche");
     private MenuItem mnItmGrundriss  	= new MenuItem("Grundrissvarianten");
     private MenuItem mnItmParkett  	= new MenuItem("Parkettvarianten");
     private MenuItem mnItmSanitaerinstallation  	= new MenuItem("Sanitaerinstallationvarianten");
     private MenuItem mnItmAussenanlage  	= new MenuItem("Aussenanlagevarianten");
-    private MenuItem mnItmInnentuer  	= new MenuItem("Innentï¿½rvarianten");
+    private MenuItem mnItmInnentuer  	= new MenuItem("Innentürvarianten");
+    private MenuItem mnItmFensterUndAussentuer  	= new MenuItem("Fenster Und Aussentuer");
     /* Text, welcher aussagt, ob das Haus mit der selektierten Plannummer
      * ein Dachgeschoss besitzt oder nicht
     */
@@ -163,6 +164,9 @@ public class KundeView{
 	    });
       	mnItmParkett.setOnAction(aEvent-> {
  	        kundeControl.oeffneParkettControl(); 
+	    });
+      	mnItmFensterUndAussentuer.setOnAction(aEvent-> {
+      		kundeControl.oeffneFensterUndAussentuerControl();
 	    });
     }
 
