@@ -123,6 +123,7 @@ public class KundeView{
 	    mnSonderwuensche.getItems().add(mnItmSanitaerinstallation);
 	    mnSonderwuensche.getItems().add(mnItmAussenanlage);
 	    mnSonderwuensche.getItems().add(mnItmInnentuer);
+	    mnSonderwuensche.getItems().add(mnItmFensterUndAussentuer);  
     }
 
     /* initialisiert die Listener zu den Steuerelementen auf de Maske */
