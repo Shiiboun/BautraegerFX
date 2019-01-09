@@ -5,6 +5,7 @@ import java.sql.SQLException;
 import business.kunde.Kunde;
 import business.kunde.KundeModel;
 import gui.grundriss.GrundrissControl;
+import gui.heizung.HeizungControl;
 import gui.parkett.ParkettControl;
 import gui.sanitaerinstallation.SanitaerinstallationControl;
 import gui.aussenanlage.AussenanlageControl;
@@ -43,7 +44,7 @@ public class KundeControl {
     /* das FensterUndAussentuerControl-Objekt fuer die Sonderwuensche
 	der Fenster und Aussentüren zu dem Kunden */
     private FensterUndAussentuerControl fensterUndAussentuerControl;
-    
+    private HeizungControl heizungControl;
     /**
 	 * erzeugt ein ControlObjekt inklusive View-Objekt und Model-Objekt zum 
 	 * Grundfenster mit den Kundendaten.
@@ -124,6 +125,13 @@ public class KundeControl {
     		this.fensterUndAussentuerControl = new FensterUndAussentuerControl(kundeModel);
       	}
     	this.fensterUndAussentuerControl.oeffneFensterUndAussentuerView();
+    }
+    
+    public void oeffneHeizungControl(){
+    	if (this.heizungControl == null){
+    		this.heizungControl = new HeizungControl(kundeModel);
+      	}
+    	this.heizungControl.oeffneHeizungView();
     }
     
 	/**

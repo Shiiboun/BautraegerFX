@@ -52,6 +52,7 @@ public class KundeView{
     private MenuItem mnItmAussenanlage  	= new MenuItem("Aussenanlagevarianten");
     private MenuItem mnItmInnentuer  	= new MenuItem("Innentürvarianten");
     private MenuItem mnItmFensterUndAussentuer  	= new MenuItem("Fenster Und Aussentuer");
+    private MenuItem mnItmHeizung  	= new MenuItem("Heizung");
     /* Text, welcher aussagt, ob das Haus mit der selektierten Plannummer
      * ein Dachgeschoss besitzt oder nicht
     */
@@ -124,6 +125,7 @@ public class KundeView{
 	    mnSonderwuensche.getItems().add(mnItmAussenanlage);
 	    mnSonderwuensche.getItems().add(mnItmInnentuer);
 	    mnSonderwuensche.getItems().add(mnItmFensterUndAussentuer);  
+	    mnSonderwuensche.getItems().add(mnItmHeizung);
     }
 
     /* initialisiert die Listener zu den Steuerelementen auf de Maske */
@@ -168,6 +170,9 @@ public class KundeView{
 	    });
       	mnItmFensterUndAussentuer.setOnAction(aEvent-> {
       		kundeControl.oeffneFensterUndAussentuerControl();
+	    });
+      	mnItmHeizung.setOnAction(aEvent-> {
+      		kundeControl.oeffneHeizungControl();
 	    });
     }
 

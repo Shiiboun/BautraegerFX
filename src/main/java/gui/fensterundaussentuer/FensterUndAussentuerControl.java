@@ -15,7 +15,7 @@ public class FensterUndAussentuerControl {
 	}
 
 	public void oeffneFensterUndAussentuerView(){ 
-		this.fensterUndAussentuerView.oeffneGrundrissView();
+		this.fensterUndAussentuerView.oeffneFensterUndAussentuerViewView();
 	}
 
 	public void leseGrundrissSonderwuensche(){
