@@ -128,16 +128,42 @@ public class GrundrissView extends BasisView{
 	}
 
     private void leseGrundrissSonderwuensche(){
-    	this.grundrissControl.leseGrundrissSonderwuensche();
+    	List<Integer> ar = this.grundrissControl.leseGrundrissSonderwuensche();
+    	for (Integer integer : ar) {
+           switch(integer){
+           case 21:
+        	   chckGr61.setSelected(true);
+        	   break;
+           case 22:
+        	   chckGr62.setSelected(true);
+        	   break;
+           case 23:
+        	   chckGr63.setSelected(true);
+        	   break;
+           case 24:
+        	   chckGr64.setSelected(true);
+        	   break;
+           case 25:
+        	   chckGr65.setSelected(true);
+        	   break;
+           case 26:
+        	   chckGr66.setSelected(true);
+        	   break;
+
+           }
+        }
     }
+
+
+
     private int[] getSelected(){
     	int[] selected = new int[6];
-    	if(chckGr61.isSelected()) selected[0] = 1;
-    	if(chckGr62.isSelected()) selected[1] = 1;
-    	if(chckGr63.isSelected()) selected[2] = 1;
-    	if(chckGr64.isSelected()) selected[3] = 1;
-    	if(chckGr65.isSelected()) selected[4] = 1;
-    	if(chckGr66.isSelected()) selected[5] = 1;
+    	if(chckGr61.isSelected()) selected[0] = 21;
+    	if(chckGr62.isSelected()) selected[1] = 22;
+    	if(chckGr63.isSelected()) selected[2] = 23;
+    	if(chckGr64.isSelected()) selected[3] = 24;
+    	if(chckGr65.isSelected()) selected[4] = 25;
+    	if(chckGr66.isSelected()) selected[5] = 26;
     	return selected;
     }
 
