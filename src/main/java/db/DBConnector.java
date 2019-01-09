@@ -159,7 +159,7 @@ public class DBConnector {
             con = DriverManager.getConnection(DB_URL, USER, PASS);
 
             //Datenbank hat noch keine Tabelle/Spalte fuer Bilder!
-            String sql = "SELECT * FROM bild WHERE bild_id = ?";
+            String sql = "SELECT Bild FROM Bauplan WHERE Plannummer = ?";
 
             pstmt = con.prepareStatement(sql);
             pstmt.setInt(1, id);
@@ -168,12 +168,15 @@ public class DBConnector {
                 Blob test=rs.getBlob("bild");
                 InputStream x=test.getBinaryStream();
                 int size=x.available();
-                path = "BilderVonHaeusern/" + id + ".jpg";
+                path = "resources/BilderVonHaeusern/" + id + ".jpg";
                 OutputStream out=new FileOutputStream(path);
                 byte b[]= new byte[size];
                 x.read(b);
                 out.write(b);
             }
+        }
+        catch(NullPointerException ne){
+            throw new NullPointerException();
         }
         catch(Exception e){
             System.out.println("Exception :"+e);
