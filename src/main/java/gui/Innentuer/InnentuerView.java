@@ -18,15 +18,21 @@ public class InnentuerView extends BasisView{
 	//---Anfang Attribute der grafischen Oberflaeche---
 		//4.1 Abstellraum auf der Terrasse des EG
 	    private Label lbl41
-	        = new Label("Türen X");
+	        = new Label("Türen 1");
 	    private TextField txt41 	= new TextField();
 	    private Label lbl41Anz 		= new Label("Anzahl");
 
 	  //4.2 Abstellraum auf der Terrasse des EG
 	    private Label lbl42
-	        = new Label("Türen Z");
+	        = new Label("Türen 2");
 	    private TextField txt42 	= new TextField();
 	    private Label lbl42Anz		= new Label("Anzahl");
+
+	  //4.2 Abstellraum auf der Terrasse des EG
+	    private Label lbl43
+	        = new Label("Türen 3");
+	    private TextField txt43 	= new TextField();
+	    private Label lbl43Anz		= new Label("Anzahl");
 
 
 
@@ -64,7 +70,14 @@ public class InnentuerView extends BasisView{
 	    	txt42.setText("0");
 	    	txt42.setEditable(false);
 	    	super.getGridPaneSonderwunsch().add(lbl42Anz, 2, 2);
+	    	//4.3
+	       	super.getGridPaneSonderwunsch().add(lbl43, 0, 3);
+	    	super.getGridPaneSonderwunsch().add(txt43, 1, 3);
+	    	txt43.setText("0");
+	    	txt43.setEditable(false);
+	    	super.getGridPaneSonderwunsch().add(lbl43Anz, 2, 3);
 		}
+
 
 
 		 /**
