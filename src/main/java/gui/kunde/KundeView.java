@@ -18,7 +18,7 @@ import java.sql.ResultSet;
  * Klasse, welche das Grundfenster mit den Kundendaten bereitstellt.
  */
 public class KundeView{
- 
+
 	// das Control-Objekt des Grundfensters mit den Kundendaten
 	private KundeControl kundeControl;
 	// das Model-Objekt des Grundfensters mit den Kundendaten
@@ -29,33 +29,33 @@ public class KundeView{
 	private GridPane gridPane 			= new GridPane();
 	private Label lblKunde    	      	= new Label("Kunde");
     private Label lblNummerHaus     	= new Label("Plannummer des Hauses");
-    private ComboBox<Integer> 
+    private ComboBox<Integer>
          cmbBxNummerHaus                 = new ComboBox<Integer>();
     private Label lblVorname         	= new Label("Vorname");
     private Label lblNachname           = new Label("Nachname");
     private Label lblEmail              = new Label("Email");
     private Label lblTelefonnummer      = new Label("Telefonnummer");
-    private TextField txtVorname     	= new TextField();   
+    private TextField txtVorname     	= new TextField();
     private TextField txtNachname       = new TextField();
     private  TextField txtEmail         = new TextField();
     private TextField txtTelefonnummer  = new TextField();
     private Button btnAnlegen	 	  	= new Button("Anlegen");
-    private Button btnSuchen            = new Button("Suchen");  
+    private Button btnSuchen            = new Button("Suchen");
     private Button btnAendern 	      	= new Button("Ã„ndern");
-    private Button btnLoeschen 	 		= new Button("LÃ¶schen");
+    private Button btnLoeschen 	 		= new Button("Löschen");
     private Button btnBildAnzeigen	 	= new Button("Bild vom Haus anzeigen");
     private MenuBar mnBar 			  	= new MenuBar();
-    private Menu mnSonderwuensche    	= new Menu("SonderwÃ¼nsche");
+    private Menu mnSonderwuensche    	= new Menu("Sonderwünsche");
     private MenuItem mnItmGrundriss  	= new MenuItem("Grundrissvarianten");
     private MenuItem mnItmParkett  	= new MenuItem("Parkettvarianten");
     private MenuItem mnItmSanitaerinstallation  	= new MenuItem("Sanitaerinstallationvarianten");
     private MenuItem mnItmAussenanlage  	= new MenuItem("Aussenanlagevarianten");
-    private MenuItem mnItmInnentuer  	= new MenuItem("Innentï¿½rvarianten");
+    private MenuItem mnItmInnentuer  	= new MenuItem("Innentürvarianten");
     /* Text, welcher aussagt, ob das Haus mit der selektierten Plannummer
      * ein Dachgeschoss besitzt oder nicht
     */
     private Text tvHatDG = new Text();
-    
+
     //-------Ende Attribute der grafischen Oberflaeche-------
 
     /**
@@ -64,12 +64,12 @@ public class KundeView{
      * @param primaryStage Stage, enthaelt das Stage-Objekt fuer diese View
      * @param kundeModel KundeModel, enthaelt das zugehoerige Model
     */
-    public KundeView (KundeControl kundeControl, Stage primaryStage, 
+    public KundeView (KundeControl kundeControl, Stage primaryStage,
     	KundeModel kundeModel){
         this.kundeControl = kundeControl;
         this.kundeModel = kundeModel;
-        
-        primaryStage.setTitle(this.kundeModel.getUeberschrift());	
+
+        primaryStage.setTitle(this.kundeModel.getUeberschrift());
 	    Scene scene = new Scene(borderPane, 550, 400);
 	    primaryStage.setScene(scene);
         primaryStage.show();
@@ -78,14 +78,14 @@ public class KundeView{
 	    this.initListener();
     }
 
- 
+
     /* initialisiert die Steuerelemente auf der Maske */
     private void initKomponenten(){
     	borderPane.setCenter(gridPane);
 	    gridPane.setHgap(10);
 	    gridPane.setVgap(10);
 	    gridPane.setPadding(new Insets(25, 25, 25, 25));
-       	
+
 	    gridPane.add(lblKunde, 0, 1);
        	lblKunde.setMinSize(150, 40);
 	    lblKunde.setFont(Font.font("Arial", FontWeight.BOLD, 24));
@@ -128,7 +128,7 @@ public class KundeView{
     private void initListener(){
     	cmbBxNummerHaus.setOnAction(aEvent-> {
     		 int plannummer = cmbBxNummerHaus.getValue();
-  		 	 holeInfoDachgeschoss(plannummer);  
+  		 	 holeInfoDachgeschoss(plannummer);
     		 leseKunden();
      	});
        	btnAnlegen.setOnAction(aEvent-> {
@@ -137,13 +137,13 @@ public class KundeView{
     	btnAendern.setOnAction(aEvent-> {
            	aendereKunden();
 	    });
-       	btnLoeschen.setOnAction(aEvent-> { 
+       	btnLoeschen.setOnAction(aEvent-> {
            	loescheKunden();
 	    });
         btnSuchen.setOnAction(aEvent-> {
             sucheKunden();
         });
-        btnBildAnzeigen.setOnAction(aEvent-> { 
+        btnBildAnzeigen.setOnAction(aEvent-> {
        		boolean isComboBoxEmpty = cmbBxNummerHaus.getSelectionModel().isEmpty();
        		if(!isComboBoxEmpty) {
 	       		int plannummer = cmbBxNummerHaus.getValue();
@@ -151,7 +151,7 @@ public class KundeView{
        		}
 	    });
       	mnItmGrundriss.setOnAction(aEvent-> {
- 	        kundeControl.oeffneGrundrissControl(); 
+ 	        kundeControl.oeffneGrundrissControl();
 	    });
 
 		mnItmAussenanlage.setOnAction(aEvent-> {
@@ -159,10 +159,14 @@ public class KundeView{
 		});
 
       	mnItmSanitaerinstallation.setOnAction(aEvent-> {
- 	        kundeControl.oeffneSanitaerinstallationControl(); 
+ 	        kundeControl.oeffneSanitaerinstallationControl();
 	    });
       	mnItmParkett.setOnAction(aEvent-> {
- 	        kundeControl.oeffneParkettControl(); 
+ 	        kundeControl.oeffneParkettControl();
+	    });
+
+      	mnItmInnentuer.setOnAction(aEvent-> {
+ 	        kundeControl.oeffneInnentuerControl();
 	    });
     }
 
@@ -174,15 +178,15 @@ public class KundeView{
 
     }
 
-    private void holeInfoDachgeschoss(int plannummer){ 
-        // Ueberpruefung auf Dachgeschoss ohne Datenbankabfrage: 
+    private void holeInfoDachgeschoss(int plannummer){
+        // Ueberpruefung auf Dachgeschoss ohne Datenbankabfrage:
 //    	if(!this.kundeModel.hatDachgeschoss(plannummer)) {
 //    		tvHatDG.setText("Hat kein Dachgeschoss");
 //    	}
 //    	else {
 //    		tvHatDG.setText("Hat Dachgeschoss");
 //    	}
-    	
+
     	// Ueberpruefung auf Dachgeschoss mit Datenbankabfrage:
     	DBConnector dbC = new DBConnector();
     	if(!dbC.hatDachgeschoss(plannummer)) {
@@ -192,7 +196,7 @@ public class KundeView{
     		tvHatDG.setText("Hat Dachgeschoss");
     	}
     }
-    
+
     private void leseKunden(){
 		cleanKundenInput();
 		try {
@@ -219,7 +223,7 @@ public class KundeView{
 			e.printStackTrace();
 		}
     }
-    
+
     private void legeKundenAn(){
 		Kunde kunde = new Kunde();
 		kunde.setVorname(txtVorname.getText());
@@ -228,7 +232,7 @@ public class KundeView{
 		kunde.setTelefonnummer(txtTelefonnummer.getText());
 		kundeControl.speichereKunden(kunde);
    	}
-    
+
   	private void aendereKunden(){
 		try {
 			PreparedStatement ps = MySQLAccess.GetInstance().getConnection().prepareStatement("UPDATE kunden SET Vorname=?,Nachname=?,Telefonnummer=?,`E-Mail-Adresse`=? WHERE kundennummer = (SELECT kundennummer FROM bauplan WHERE plannummer = ?)");
@@ -242,7 +246,7 @@ public class KundeView{
 			e.printStackTrace();
 		}
    	}
-  	
+
    	private void loescheKunden(){
 
 		try {
@@ -257,7 +261,7 @@ public class KundeView{
 		}
 
    	}
-   	
+
    /** zeigt ein Fehlermeldungsfenster an
     * @param ueberschrift, Ueberschrift fuer das Fehlermeldungsfenster
     * @param meldung, String, welcher die Fehlermeldung enthaelt
