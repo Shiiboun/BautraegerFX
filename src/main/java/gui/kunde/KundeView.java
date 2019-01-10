@@ -221,14 +221,14 @@ public class KundeView{
 				txtEmail.setText(rs.getString("E-Mail-Adresse"));
 				txtTelefonnummer.setText(rs.getString("Telefonnummer"));
 
-				Kunde kunde = new Kunde();
-				kunde.setKundennummer(rs.getInt("Kundennummer"));
-				kunde.setPlannummer(rs.getInt("Plannummer"));
-				kunde.setVorname(rs.getString("Vorname"));
-				kunde.setNachname(rs.getString("Nachname"));
-				kunde.setEmail(rs.getString("E-Mail-Adresse"));
-				kunde.setTelefonnummer(rs.getString("Telefonnummer"));
-				kundeModel.speichereKunden(kunde);
+//				Kunde kunde = new Kunde();
+//				kunde.setKundennummer(rs.getInt("Kundennummer"));
+//				kunde.setPlannummer(rs.getInt("Plannummer"));
+//				kunde.setVorname(rs.getString("Vorname"));
+//				kunde.setNachname(rs.getString("Nachname"));
+//				kunde.setEmail(rs.getString("E-Mail-Adresse"));
+//				kunde.setTelefonnummer(rs.getString("Telefonnummer"));
+//				kundeModel.speichereKunden(kunde);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
