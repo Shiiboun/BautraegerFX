@@ -8,13 +8,14 @@ import java.io.OutputStream;
 import java.sql.*;
 
 public class DBConnector {
+
+    private static final String DB_URL = "jdbc:mysql://localhost/bautraegerfx";
+
+    private static final String USER = "root";
+    private static final String PASS = "root";
+
   
-//    private static final String DB_URL = "jdbc:mysql://localhost/bautraegerfx";
-//    
-//    private static final String USER = "root";
-//    private static final String PASS = "root";
-  
-    public static String user, pass, db_url;
+    // public static String user, pass, db_url;
 	
     
     public boolean hatDachgeschoss(int planNummer) {
