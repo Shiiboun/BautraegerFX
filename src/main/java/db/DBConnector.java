@@ -71,11 +71,14 @@ public class DBConnector {
             System.out.println("Creating statement...");
             stmt = conn.createStatement();
             String sql;
-            sql = "INSERT INTO kunden (Vorname, Nachname, Telefonnummer, E-Mail-Adresse) " +
-                    "VALUES(" + vorname + ", " + nachname + ", " + telefonnummer + ", " + email + ");";
-            ResultSet rs = stmt.executeQuery(sql);
-
-            rs.close();
+//            sql = "INSERT INTO kunden (Vorname, Nachname, Telefonnummer, E-Mail-Adresse) " +
+//                    "VALUES(" + vorname + ", " + nachname + ", " + telefonnummer + ", " + email + ");";
+//            ResultSet rs = stmt.executeQuery(sql);
+            sql = "INSERT INTO `Kunden` (`Vorname`, `Nachname`, `Telefonnummer`, `E-Mail-Adresse`) " +
+                    "VALUES('" + vorname + "', '" + nachname + "', '" + telefonnummer + "', '" + email + "');";
+            int result = stmt.executeUpdate(sql);
+            System.out.println(result + " rows inserted");
+            //rs.close();
             stmt.close();
             conn.close();
         } catch (Exception e) {
