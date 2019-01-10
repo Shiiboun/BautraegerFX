@@ -44,6 +44,7 @@ public final class GrundrissControl {
 		ArrayList ar = new ArrayList();
 		try {
 			PreparedStatement ps = MySQLAccess.GetInstance().getConnection().prepareStatement("SELECT * FROM bauplan_sonderwuensche WHERE Plannummer = ?");
+			System.out.println(kundeModel.getKunde().getPlannummer());
 			ps.setInt(1, kundeModel.getKunde().getPlannummer());
 			ResultSet rs = ps.executeQuery();
 

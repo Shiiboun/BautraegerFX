@@ -14,21 +14,25 @@ public class DBConnector {
     private static final String USER = "root";
     private static final String PASS = "root";
 
+  
+    // public static String user, pass, db_url;
+	
+    
     public boolean hatDachgeschoss(int planNummer) {
         boolean hatDachgeschoss = false;
-
+        
         Connection conn = null;
         Statement stmt = null;
         try {
             Class.forName("com.mysql.jdbc.Driver");
 
             System.out.println("Connecting to database...");
-            conn = DriverManager.getConnection(DB_URL, USER, PASS);
+            conn = DriverManager.getConnection(db_url, user, pass);
 
             System.out.println("Creating statement...");
             stmt = conn.createStatement();
             String sql;
-            sql = "SELECT Dachgeschoss FROM Bauplan WHERE Plannummer=" + planNummer;
+            sql = "SELECT Dachgeschoss FROM bauplan WHERE Plannummer=" + planNummer;
             ResultSet rs = stmt.executeQuery(sql);
 
             while (rs.next()) {
@@ -63,16 +67,19 @@ public class DBConnector {
             Class.forName("com.mysql.jdbc.Driver");
 
             System.out.println("Connecting to database...");
-            conn = DriverManager.getConnection(DB_URL, USER, PASS);
+            conn = DriverManager.getConnection(db_url, user, pass);
 
             System.out.println("Creating statement...");
             stmt = conn.createStatement();
             String sql;
-            sql = "INSERT INTO Kunden (Vorname, Nachname, Telefonnummer, E-Mail-Adresse) " +
-                    "VALUES(" + vorname + ", " + nachname + ", " + telefonnummer + ", " + email + ");";
-            ResultSet rs = stmt.executeQuery(sql);
-
-            rs.close();
+//            sql = "INSERT INTO kunden (Vorname, Nachname, Telefonnummer, E-Mail-Adresse) " +
+//                    "VALUES(" + vorname + ", " + nachname + ", " + telefonnummer + ", " + email + ");";
+//            ResultSet rs = stmt.executeQuery(sql);
+            sql = "INSERT INTO `kunden` (`Vorname`, `Nachname`, `Telefonnummer`, `E-Mail-Adresse`) " +
+                    "VALUES('" + vorname + "', '" + nachname + "', '" + telefonnummer + "', '" + email + "');";
+            int result = stmt.executeUpdate(sql);
+            System.out.println(result + " rows inserted");
+            //rs.close();
             stmt.close();
             conn.close();
         } catch (Exception e) {
@@ -103,12 +110,12 @@ public class DBConnector {
             Class.forName("com.mysql.jdbc.Driver");
 
             System.out.println("Connecting to database...");
-            conn = DriverManager.getConnection(DB_URL, USER, PASS);
+            conn = DriverManager.getConnection(db_url, user, pass);
 
             System.out.println("Creating statement...");
             stmt = conn.createStatement();
             String sql;
-            sql = "SELECT * FROM Kunden WHERE Vorname LIKE '%" + vorname + "%' OR Nachname LIKE '%" + nachname
+            sql = "SELECT * FROM kunden WHERE Vorname LIKE '%" + vorname + "%' OR Nachname LIKE '%" + nachname
                     + "%' OR Telefonnummer LIKE '%" + telefonnummer + "%' OR E-Mail-Adresse LIKE '%" + email + "%';";
             ResultSet rs = stmt.executeQuery(sql);
 
@@ -120,7 +127,7 @@ public class DBConnector {
                 kunde.setEmail(rs.getString("E-Mail-Adresse"));
             }
 
-            rs.close();
+            rs.close(); 
             stmt.close();
             conn.close();
         } catch (Exception e) {
@@ -156,10 +163,10 @@ public class DBConnector {
 
         try{
             Class.forName(driverName);
-            con = DriverManager.getConnection(DB_URL, USER, PASS);
+            con = DriverManager.getConnection(db_url, user, pass);
 
             //Datenbank hat noch keine Tabelle/Spalte fuer Bilder!
-            String sql = "SELECT * FROM bild WHERE bild_id = ?";
+            String sql = "SELECT Bild FROM bauplan WHERE Plannummer = ?";
 
             pstmt = con.prepareStatement(sql);
             pstmt.setInt(1, id);
@@ -168,12 +175,15 @@ public class DBConnector {
                 Blob test=rs.getBlob("bild");
                 InputStream x=test.getBinaryStream();
                 int size=x.available();
-                path = "BilderVonHaeusern/" + id + ".jpg";
+                path = "resources/BilderVonHaeusern/" + id + ".jpg";
                 OutputStream out=new FileOutputStream(path);
                 byte b[]= new byte[size];
                 x.read(b);
                 out.write(b);
             }
+        }
+        catch(NullPointerException ne){
+            throw new NullPointerException();
         }
         catch(Exception e){
             System.out.println("Exception :"+e);

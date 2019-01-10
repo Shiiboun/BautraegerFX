@@ -40,17 +40,20 @@ public class KundeView{
     private  TextField txtEmail         = new TextField();
     private TextField txtTelefonnummer  = new TextField();
     private Button btnAnlegen	 	  	= new Button("Anlegen");
-    private Button btnSuchen            = new Button("Suchen");
+    private Button btnSuchen            = new Button("Suchen");  
     private Button btnAendern 	      	= new Button("Ã„ndern");
-    private Button btnLoeschen 	 		= new Button("Löschen");
+    private Button btnLoeschen 	 		= new Button("LÃ¶schen");
     private Button btnBildAnzeigen	 	= new Button("Bild vom Haus anzeigen");
     private MenuBar mnBar 			  	= new MenuBar();
-    private Menu mnSonderwuensche    	= new Menu("Sonderwünsche");
+    private Menu mnSonderwuensche    	= new Menu("SonderwÃ¼nsche");
     private MenuItem mnItmGrundriss  	= new MenuItem("Grundrissvarianten");
     private MenuItem mnItmParkett  	= new MenuItem("Parkettvarianten");
     private MenuItem mnItmSanitaerinstallation  	= new MenuItem("Sanitaerinstallationvarianten");
     private MenuItem mnItmAussenanlage  	= new MenuItem("Aussenanlagevarianten");
-    private MenuItem mnItmInnentuer  	= new MenuItem("Innentürvarianten");
+    private MenuItem mnItmInnentuer  	= new MenuItem("InnentÃ¼rvarianten");
+    private MenuItem mnItmFensterUndAussentuer  	= new MenuItem("Fenster Und Aussentuer");
+    private MenuItem mnItmHeizung  	= new MenuItem("Heizung");
+
     /* Text, welcher aussagt, ob das Haus mit der selektierten Plannummer
      * ein Dachgeschoss besitzt oder nicht
     */
@@ -122,6 +125,8 @@ public class KundeView{
 	    mnSonderwuensche.getItems().add(mnItmSanitaerinstallation);
 	    mnSonderwuensche.getItems().add(mnItmAussenanlage);
 	    mnSonderwuensche.getItems().add(mnItmInnentuer);
+	    mnSonderwuensche.getItems().add(mnItmFensterUndAussentuer);  
+	    mnSonderwuensche.getItems().add(mnItmHeizung);
     }
 
     /* initialisiert die Listener zu den Steuerelementen auf de Maske */
@@ -168,6 +173,12 @@ public class KundeView{
       	mnItmInnentuer.setOnAction(aEvent-> {
  	        kundeControl.oeffneInnentuerControl();
 	    });
+      	mnItmFensterUndAussentuer.setOnAction(aEvent-> {
+      		kundeControl.oeffneFensterUndAussentuerControl();
+	    });
+      	mnItmHeizung.setOnAction(aEvent-> {
+      		kundeControl.oeffneHeizungControl();
+	    });
     }
 
     private void sucheKunden(){
@@ -210,14 +221,14 @@ public class KundeView{
 				txtEmail.setText(rs.getString("E-Mail-Adresse"));
 				txtTelefonnummer.setText(rs.getString("Telefonnummer"));
 
-				Kunde kunde = new Kunde();
-				kunde.setKundennummer(rs.getInt("Kundennummer"));
-				kunde.setPlannummer(rs.getInt("Plannummer"));
-				kunde.setVorname(rs.getString("Vorname"));
-				kunde.setNachname(rs.getString("Nachname"));
-				kunde.setEmail(rs.getString("E-Mail-Adresse"));
-				kunde.setTelefonnummer(rs.getString("Telefonnummer"));
-				kundeModel.speichereKunden(kunde);
+//				Kunde kunde = new Kunde();
+//				kunde.setKundennummer(rs.getInt("Kundennummer"));
+//				kunde.setPlannummer(rs.getInt("Plannummer"));
+//				kunde.setVorname(rs.getString("Vorname"));
+//				kunde.setNachname(rs.getString("Nachname"));
+//				kunde.setEmail(rs.getString("E-Mail-Adresse"));
+//				kunde.setTelefonnummer(rs.getString("Telefonnummer"));
+//				kundeModel.speichereKunden(kunde);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
