@@ -2,6 +2,7 @@ package gui.Innentuer;
 
 
 import gui.basis.BasisView;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -21,18 +22,21 @@ public class InnentuerView extends BasisView{
 	        = new Label("Mehrpreis für die Ausführung eines Glasausschnitts(Klarglas) in einer Innentür");
 	    private TextField txt41 	= new TextField();
 	    private Label lbl41Anz 		= new Label("Euro je Tür");
+	    private CheckBox chckGr41 		= new CheckBox();
 
 	  //4.2 Abstellraum auf der Terrasse des EG
 	    private Label lbl42
 	        = new Label("Mehrpreis für die Ausführung eines Glasausschnitts(Milchglas) in einer Innentür");
 	    private TextField txt42 	= new TextField();
 	    private Label lbl42Anz		= new Label("Euro je Tür");
+	    private CheckBox chckGr42		= new CheckBox();
 
 	  //4.2 Abstellraum auf der Terrasse des EG
 	    private Label lbl43
 	        = new Label("Innentür zur Garage als Holztür");
 	    private TextField txt43 	= new TextField();
 	    private Label lbl43Anz		= new Label("Euro je Tür");
+	    private CheckBox chckGr43 		= new CheckBox();
 
 
 
@@ -64,18 +68,21 @@ public class InnentuerView extends BasisView{
 	    	txt41.setText("460");
 	    	txt41.setEditable(false);
 	    	super.getGridPaneSonderwunsch().add(lbl41Anz, 2, 1);
+	    	super.getGridPaneSonderwunsch().add(chckGr41, 3, 1);
 	       	//4.2
 	       	super.getGridPaneSonderwunsch().add(lbl42, 0, 2);
 	    	super.getGridPaneSonderwunsch().add(txt42, 1, 2);
 	    	txt42.setText("560");
 	    	txt42.setEditable(false);
 	    	super.getGridPaneSonderwunsch().add(lbl42Anz, 2, 2);
+	    	super.getGridPaneSonderwunsch().add(chckGr42, 3, 2);
 	    	//4.3
 	       	super.getGridPaneSonderwunsch().add(lbl43, 0, 3);
 	    	super.getGridPaneSonderwunsch().add(txt43, 1, 3);
 	    	txt43.setText("660");
 	    	txt43.setEditable(false);
 	    	super.getGridPaneSonderwunsch().add(lbl43Anz, 2, 3);
+	    	super.getGridPaneSonderwunsch().add(chckGr43, 3, 3);
 		}
 
 
