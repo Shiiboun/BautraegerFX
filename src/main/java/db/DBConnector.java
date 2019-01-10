@@ -9,21 +9,24 @@ import java.sql.*;
 
 public class DBConnector {
   
-    private static final String DB_URL = "jdbc:mysql://localhost/bautraegerfx";
-    
-    private static final String USER = "root";
-    private static final String PASS = "root";
+//    private static final String DB_URL = "jdbc:mysql://localhost/bautraegerfx";
+//    
+//    private static final String USER = "root";
+//    private static final String PASS = "root";
+  
+    public static String user, pass, db_url;
+	
     
     public boolean hatDachgeschoss(int planNummer) {
         boolean hatDachgeschoss = false;
-
+        
         Connection conn = null;
         Statement stmt = null;
         try {
             Class.forName("com.mysql.jdbc.Driver");
 
             System.out.println("Connecting to database...");
-            conn = DriverManager.getConnection(DB_URL, USER, PASS);
+            conn = DriverManager.getConnection(db_url, user, pass);
 
             System.out.println("Creating statement...");
             stmt = conn.createStatement();
@@ -63,7 +66,7 @@ public class DBConnector {
             Class.forName("com.mysql.jdbc.Driver");
 
             System.out.println("Connecting to database...");
-            conn = DriverManager.getConnection(DB_URL, USER, PASS);
+            conn = DriverManager.getConnection(db_url, user, pass);
 
             System.out.println("Creating statement...");
             stmt = conn.createStatement();
@@ -103,7 +106,7 @@ public class DBConnector {
             Class.forName("com.mysql.jdbc.Driver");
 
             System.out.println("Connecting to database...");
-            conn = DriverManager.getConnection(DB_URL, USER, PASS);
+            conn = DriverManager.getConnection(db_url, user, pass);
 
             System.out.println("Creating statement...");
             stmt = conn.createStatement();
@@ -120,7 +123,7 @@ public class DBConnector {
                 kunde.setEmail(rs.getString("E-Mail-Adresse"));
             }
 
-            rs.close();
+            rs.close(); 
             stmt.close();
             conn.close();
         } catch (Exception e) {
@@ -156,7 +159,7 @@ public class DBConnector {
 
         try{
             Class.forName(driverName);
-            con = DriverManager.getConnection(DB_URL, USER, PASS);
+            con = DriverManager.getConnection(db_url, user, pass);
 
             //Datenbank hat noch keine Tabelle/Spalte fuer Bilder!
             String sql = "SELECT Bild FROM Bauplan WHERE Plannummer = ?";
