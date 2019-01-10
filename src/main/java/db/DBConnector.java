@@ -71,7 +71,7 @@ public class DBConnector {
             System.out.println("Creating statement...");
             stmt = conn.createStatement();
             String sql;
-            sql = "INSERT INTO Kunden (Vorname, Nachname, Telefonnummer, E-Mail-Adresse) " +
+            sql = "INSERT INTO kunden (Vorname, Nachname, Telefonnummer, E-Mail-Adresse) " +
                     "VALUES(" + vorname + ", " + nachname + ", " + telefonnummer + ", " + email + ");";
             ResultSet rs = stmt.executeQuery(sql);
 
@@ -111,7 +111,7 @@ public class DBConnector {
             System.out.println("Creating statement...");
             stmt = conn.createStatement();
             String sql;
-            sql = "SELECT * FROM Kunden WHERE Vorname LIKE '%" + vorname + "%' OR Nachname LIKE '%" + nachname
+            sql = "SELECT * FROM kunden WHERE Vorname LIKE '%" + vorname + "%' OR Nachname LIKE '%" + nachname
                     + "%' OR Telefonnummer LIKE '%" + telefonnummer + "%' OR E-Mail-Adresse LIKE '%" + email + "%';";
             ResultSet rs = stmt.executeQuery(sql);
 
