@@ -1,5 +1,8 @@
 package gui.parkett;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import business.kunde.KundeModel;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -31,10 +34,19 @@ public final class ParkettControl {
 		this.parkettView.oeffneParkettView();
 	}
 
-	public void leseParkettSonderwuensche(){
-    } 
+	public List<Integer> leseParkettSonderwuensche() {
+		ArrayList<Integer> arrayList = new ArrayList<Integer>();
+		//TODO Markierte Sonderwuensche auslesen
+		return arrayList;
+	}
 	
-	public boolean pruefeKonstellationSonderwuensche(int[] ausgewaehlteSw){
+	public boolean pruefeKonstellationSonderwuensche(List<Integer> sw){
 		return true;
+		//TODO Ueberpruefung fehlt noch
+	}
+
+	public void speichereKonstellation(List<Integer> ausgewaehlteWuensche) {
+		System.out.println("Gespeichert!");
+		//TODO Markierte Sonderwuensche abspeichern
 	}
 }
