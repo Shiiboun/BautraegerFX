@@ -28,6 +28,12 @@ public class Main extends Application {
 //        DBConnector.pass = "root";
 //        DBConnector.db_url = "jdbc:mysql://" + "localhost" + "/" + "bautraegerfx";
         
+          // Produkt-Datenbank, lokal:
+//        MySQLAccess.init("localhost","root", "root", "db274608x2827186");
+//        DBConnector.user = "root";
+//        DBConnector.pass = "root";
+//        DBConnector.db_url = "jdbc:mysql://" + "localhost" + "/" + "db274608x2827186";
+        
         try {
         	MySQLAccess.GetInstance().getConnection().prepareStatement("USE db274608x2827186");
             MySQLAccess.GetInstance().getConnection().prepareStatement("SELECT * FROM kunde");
