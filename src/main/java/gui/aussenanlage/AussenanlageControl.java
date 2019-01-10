@@ -63,7 +63,7 @@ public final class AussenanlageControl {
 	}
 
 	public boolean pruefeKonstellationSonderwuensche(List<Integer> sw) {
-		if (sw.contains(1) && sw.contains(4)) {
+		if (sw.contains(91) && sw.contains(92)) {
 			return false;
 		}
 		return true;

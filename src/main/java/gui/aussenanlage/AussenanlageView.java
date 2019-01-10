@@ -25,13 +25,13 @@ public class AussenanlageView extends BasisView{
     private CheckBox chckBx91 		= new CheckBox();
 	//9.2 Vorbereitung f?r elektrische Antriebe Markise EG
     private Label lbl92    	     
-        = new Label("Vorbereitung für elektrische Antriebe Markise EG");
+        = new Label("Vorbereitung fï¿½r elektrische Antriebe Markise EG");
     private TextField txt92 	= new TextField();
     private Label lbl92euro 		= new Label("Euro");
     private CheckBox chckBx92 		= new CheckBox();
 	//9.3 Vorbereitung f?r elektrische Antriebe Markise DG
     private Label lbl93    	     
-        = new Label("Vorbereitung für elektrische Antriebe Markise DG");
+        = new Label("Vorbereitung fï¿½r elektrische Antriebe Markise DG");
     private TextField txt93 	= new TextField();
     private Label lbl93euro 		= new Label("Euro");
     private CheckBox chckBx93 		= new CheckBox();
@@ -49,13 +49,13 @@ public class AussenanlageView extends BasisView{
     private CheckBox chckBx95 		= new CheckBox();
 	//9.6 Elektrischen Antrieb f?r das Garagentor
     private Label lbl96    	     
-        = new Label("Elektrischen Antrieb für das Garagentor");
+        = new Label("Elektrischen Antrieb fï¿½r das Garagentor");
     private TextField txt96 	= new TextField();
     private Label lbl96euro 		= new Label("Euro");
     private CheckBox chckBx96 		= new CheckBox();
 	//9.7 Sektionaltor anstatt Schwingtor f?r die Garage
     private Label lbl97    	     
-        = new Label("Sektionaltor anstatt Schwingtor für die Garage");
+        = new Label("Sektionaltor anstatt Schwingtor fï¿½r die Garage");
     private TextField txt97 	= new TextField();
     private Label lbl97euro 		= new Label("Euro");
     private CheckBox chckBx97 		= new CheckBox();
@@ -70,7 +70,7 @@ public class AussenanlageView extends BasisView{
     public AussenanlageView (AussenanlageControl aussenanlageControl, Stage aussenanlageStage){
     	super(aussenanlageStage);
         this.aussenanlageControl = aussenanlageControl;
-        aussenanlageStage.setTitle("Sonderwünsche zu Außenanlage-Varianten");
+        aussenanlageStage.setTitle("Sonderwï¿½nsche zu Auï¿½enanlage-Varianten");
                 
 	    this.initKomponenten();
 	    this.leseAussenanlageSonderwuensche();
@@ -79,7 +79,7 @@ public class AussenanlageView extends BasisView{
     /* initialisiert die Steuerelemente auf der Maske */
     protected void initKomponenten(){
     	super.initKomponenten(); 
-       	super.getLblSonderwunsch().setText("Außenanlage-Varianten");
+       	super.getLblSonderwunsch().setText("Auï¿½enanlage-Varianten");
 
        	//9.1
        	super.getGridPaneSonderwunsch().add(lbl91, 0, 1);
@@ -190,10 +190,10 @@ public class AussenanlageView extends BasisView{
 			preis += Integer.parseInt(txt97.getText());
 		}
   		if(pruefeKonstellationSonderwuensche()) {
-  			//TODO @GUI Bearbeiter: Schönere ausgabe!
+  			//TODO @GUI Bearbeiter: Schï¿½nere ausgabe!
 			System.out.println("Preis: "  + preis);
 		}else{
-			System.out.println("Fehler, diese Kombination ist nicht Möglich");
+			System.out.println("Fehler, diese Kombination ist nicht Mï¿½glich");
 		}
 
   	}
@@ -216,13 +216,13 @@ public class AussenanlageView extends BasisView{
 		List<Integer> ausgewaehlteWuensche = new ArrayList<>();
 
 
-		if (chckBx91.isSelected()) ausgewaehlteWuensche.add(0);
-		if (chckBx92.isSelected()) ausgewaehlteWuensche.add(1);
-		if (chckBx93.isSelected()) ausgewaehlteWuensche.add(2);
-		if (chckBx94.isSelected()) ausgewaehlteWuensche.add(3);
-		if (chckBx95.isSelected()) ausgewaehlteWuensche.add(4);
-		if (chckBx96.isSelected()) ausgewaehlteWuensche.add(5);
-		if (chckBx97.isSelected()) ausgewaehlteWuensche.add(6);
+		if (chckBx91.isSelected()) ausgewaehlteWuensche.add(91);
+		if (chckBx92.isSelected()) ausgewaehlteWuensche.add(92);
+		if (chckBx93.isSelected()) ausgewaehlteWuensche.add(93);
+		if (chckBx94.isSelected()) ausgewaehlteWuensche.add(94);
+		if (chckBx95.isSelected()) ausgewaehlteWuensche.add(95);
+		if (chckBx96.isSelected()) ausgewaehlteWuensche.add(96);
+		if (chckBx97.isSelected()) ausgewaehlteWuensche.add(96);
 		return ausgewaehlteWuensche;
 	}
 
@@ -233,20 +233,20 @@ public class AussenanlageView extends BasisView{
 			aussenanlageControl.speichereKonstellation(getAusgewaehlteWuensche());
 			System.out.println("");
 		}else{
-			System.out.println("Fehler, diese Kombination ist nicht Möglich");
+			System.out.println("Fehler, diese Kombination ist nicht Mï¿½glich");
 		}
   	}
 
 
 	public void setSonderwunsch(int sonderwuensche) {
 		switch(sonderwuensche) {
-			case 0: chckBx91.setSelected(true); break;
-			case 1: chckBx92.setSelected(true); break;
-			case 2: chckBx93.setSelected(true); break;
-			case 3: chckBx94.setSelected(true); break;
-			case 4: chckBx95.setSelected(true); break;
-			case 5: chckBx96.setSelected(true); break;
-			case 6: chckBx97.setSelected(true); break;
+			case 91: chckBx91.setSelected(true); break;
+			case 92: chckBx92.setSelected(true); break;
+			case 93: chckBx93.setSelected(true); break;
+			case 94: chckBx94.setSelected(true); break;
+			case 95: chckBx95.setSelected(true); break;
+			case 96: chckBx96.setSelected(true); break;
+			case 97: chckBx97.setSelected(true); break;
 		}
 	}
 }
