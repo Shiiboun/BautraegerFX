@@ -96,8 +96,8 @@ public final class KundeModel {
 	    throws SQLException, Exception{
         // Speicherung des Kunden in der DB
    	    this.kunde = kunde;
-   	    DBConnector dbC = new DBConnector();
-   	    dbC.kundenSpeichern(kunde.getVorname(), kunde.getNachname(), kunde.getTelefonnummer(), kunde.getEmail());
+		DBConnector db = new DBConnector();
+		db.kundenSpeichern(kunde.getVorname(), kunde.getNachname(), kunde.getTelefonnummer(), kunde.getEmail());
 	}
 
 	public Kunde getKunde() {
