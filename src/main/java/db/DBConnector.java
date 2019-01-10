@@ -2,25 +2,31 @@ package db;
 
 import business.kunde.Kunde;
 
+import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.sql.*;
 
 public class DBConnector {
   
-    private static final String DB_URL = "jdbc:mysql://localhost/bautraegerfx";
-    
-    private static final String USER = "root";
-    private static final String PASS = "root";
+//    private static final String DB_URL = "jdbc:mysql://localhost/bautraegerfx";
+//    
+//    private static final String USER = "root";
+//    private static final String PASS = "root";
+  
+    public static String user, pass, db_url;
+	
     
     public boolean hatDachgeschoss(int planNummer) {
         boolean hatDachgeschoss = false;
-
+        
         Connection conn = null;
         Statement stmt = null;
         try {
             Class.forName("com.mysql.jdbc.Driver");
 
             System.out.println("Connecting to database...");
-            conn = DriverManager.getConnection(DB_URL, USER, PASS);
+            conn = DriverManager.getConnection(db_url, user, pass);
 
             System.out.println("Creating statement...");
             stmt = conn.createStatement();
@@ -60,7 +66,7 @@ public class DBConnector {
             Class.forName("com.mysql.jdbc.Driver");
 
             System.out.println("Connecting to database...");
-            conn = DriverManager.getConnection(DB_URL, USER, PASS);
+            conn = DriverManager.getConnection(db_url, user, pass);
 
             System.out.println("Creating statement...");
             stmt = conn.createStatement();
@@ -100,7 +106,7 @@ public class DBConnector {
             Class.forName("com.mysql.jdbc.Driver");
 
             System.out.println("Connecting to database...");
-            conn = DriverManager.getConnection(DB_URL, USER, PASS);
+            conn = DriverManager.getConnection(db_url, user, pass);
 
             System.out.println("Creating statement...");
             stmt = conn.createStatement();
@@ -117,7 +123,7 @@ public class DBConnector {
                 kunde.setEmail(rs.getString("E-Mail-Adresse"));
             }
 
-            rs.close();
+            rs.close(); 
             stmt.close();
             conn.close();
         } catch (Exception e) {
@@ -138,5 +144,56 @@ public class DBConnector {
             }
         }
         return kunde;
+    }
+
+    public String getBildVonHaus(int id){
+        //Laed Bild zu Haus mit entsprechender ID in den Bilder-Ordner und gibt den Speicherpfad zurueck.
+
+        FileOutputStream image;
+        Connection con = null;
+        PreparedStatement pstmt = null;
+        ResultSet res = null;
+        StringBuffer query=null;
+        String driverName = "com.mysql.jdbc.Driver";
+        String path = "";
+
+        try{
+            Class.forName(driverName);
+            con = DriverManager.getConnection(db_url, user, pass);
+
+            //Datenbank hat noch keine Tabelle/Spalte fuer Bilder!
+            String sql = "SELECT Bild FROM Bauplan WHERE Plannummer = ?";
+
+            pstmt = con.prepareStatement(sql);
+            pstmt.setInt(1, id);
+            ResultSet rs=pstmt.executeQuery();
+            if (rs.next()) {
+                Blob test=rs.getBlob("bild");
+                InputStream x=test.getBinaryStream();
+                int size=x.available();
+                path = "resources/BilderVonHaeusern/" + id + ".jpg";
+                OutputStream out=new FileOutputStream(path);
+                byte b[]= new byte[size];
+                x.read(b);
+                out.write(b);
+            }
+        }
+        catch(NullPointerException ne){
+            throw new NullPointerException();
+        }
+        catch(Exception e){
+            System.out.println("Exception :"+e);
+        }
+        finally{
+            try{
+                pstmt.close();
+                con.close();
+            }
+            catch(Exception e){
+                System.out.println(e);
+            }
+        }
+
+        return path;
     }
 }
