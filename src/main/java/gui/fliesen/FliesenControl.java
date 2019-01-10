@@ -1,7 +1,6 @@
 package main.java.gui.fliesen;
 
 import java.sql.PreparedStatement;
-import java.sql.Statement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
@@ -32,6 +31,27 @@ public final class FliesenControl {
 	
 	public void oeffneFliesenView(){ 
 		this.fliesenView.oeffneFliesenView();
+	}
+	
+	public List<String> leseDatenAus(){
+		ArrayList datenAuslesen = new ArrayList();
+		
+		try {
+			PreparedStatement ps = MySQLAccess.GetInstance().getConnection().prepareStatement("SELECT * FROM sonderwuensche WHERE SonderwunschID BETWEEN 71 AND 76");
+			ResultSet rs = ps.executeQuery();
+	
+			 while(rs.next()) {
+				 String id = rs.getString(1);
+				 String bezeichnung = rs.getString(2);
+				 int preis = rs.getInt(3);
+				 datenAuslesen.add(id+";"+bezeichnung+";"+preis);
+				 //System.out.println(id+";"+bezeichnung+";"+preis);
+		}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return datenAuslesen;
 	}
 
 	public List<Integer> leseFliesenSonderwuensche(){

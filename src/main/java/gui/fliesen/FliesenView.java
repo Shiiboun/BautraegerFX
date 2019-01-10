@@ -1,9 +1,11 @@
 package main.java.gui.fliesen;
 
-	import main.java.gui.basis.BasisView;
+import main.java.gui.basis.BasisView;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.sql.*;
+import java.sql.PreparedStatement;
 
 import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
@@ -21,37 +23,37 @@ import javafx.stage.Stage;
 	    //---Anfang Attribute der grafischen Oberflaeche---
 		//7.1 Keine Fliesen im Küchenbereich des EG
 	    private Label lbl91    	     
-	        = new Label("Keine Fliesen im Küchenbereich des EG");
+	        = new Label("No DB: Keine Fliesen im Küchenbereich des EG");
 	    private TextField txt91 	= new TextField();
 	    private Label lbl91euro 		= new Label("Euro");
 	    private CheckBox chckBx91 		= new CheckBox();
 		//7.2 Keine Fliesen im Bad des OG
 	    private Label lbl92    	     
-	        = new Label("Keine Fliesen im Bad des OG");
+	        = new Label("No DB: Keine Fliesen im Bad des OG");
 	    private TextField txt92 	= new TextField();
 	    private Label lbl92euro 		= new Label("Euro");
 	    private CheckBox chckBx92 		= new CheckBox();
 		//7.3 Mehrpreis bei großformatigen Fliesen im Küchenbereich des EG
 	    private Label lbl93    	     
-	        = new Label("Mehrpreis Großformatfliesen Küche EG");
+	        = new Label("No DB: Mehrpreis Großformatfliesen Küche EG");
 	    private TextField txt93 	= new TextField();
 	    private Label lbl93euro 		= new Label("Euro");
 	    private CheckBox chckBx93 		= new CheckBox();
 		//7.4 Mehrpreis bei großformatigen Fliesen im Bad des OG
 	    private Label lbl94    	     
-	        = new Label("Mehrpreis Großformatfliesen Bad OG");
+	        = new Label("No DB: Mehrpreis Großformatfliesen Bad OG");
 	    private TextField txt94 	= new TextField();
 	    private Label lbl94euro 		= new Label("Euro");
 	    private CheckBox chckBx94 		= new CheckBox();
 		//7.5 Fliesen im Bad des DG
 	    private Label lbl95    	     
-	        = new Label("Fliesen im Bad DG");
+	        = new Label("No DB: Fliesen im Bad DG");
 	    private TextField txt95 	= new TextField();
 	    private Label lbl95euro 		= new Label("Euro");
 	    private CheckBox chckBx95 		= new CheckBox();
 		//7.6 Mehrpreis bei großformatigen Fliesen im Bad des DG
 	    private Label lbl96    	     
-	        = new Label("Mehrpreis Großformatfliesen Bad DG");
+	        = new Label("No DB: Mehrpreis Großformatfliesen Bad DG");
 	    private TextField txt96 	= new TextField();
 	    private Label lbl96euro 		= new Label("Euro");
 	    private CheckBox chckBx96 		= new CheckBox();
@@ -61,10 +63,49 @@ import javafx.stage.Stage;
 	    public FliesenView (FliesenControl fliesenControl, Stage fliesenStage){
 	    	super(fliesenStage);
 	        this.fliesenControl = fliesenControl;
-	       fliesenStage.setTitle("Sonderwünsche zu Fliesen-Varianten");
+	        fliesenStage.setTitle("Sonderwünsche zu Fliesen-Varianten");
 	                
 		    this.initKomponenten();
 		    this.leseFliesenSonderwuensche();
+		    this.boxcheck();
+		    this.test();
+	    }
+	    
+	    public void test() {
+	    	List<String> fliesenauswahl = this.fliesenControl.leseDatenAus();
+	    	
+	    	for(int i = 0; i < fliesenauswahl.size(); i++) {
+	    		String zeile = fliesenauswahl.get(i);
+	    		String[] split = zeile.split(";"); // [31, 8, 6, 12, 19, 42]
+	    		
+	    		//System.out.println(split[0]);
+	    		//System.out.println(split[1]);
+	    		//System.out.println(split[2]);
+	    		
+	    		switch(split[0]) {
+				case "71": 	lbl91.setText(split[1]);
+							txt91.setText(split[2]);
+							break;
+				case "72": 	lbl92.setText(split[1]); 
+							txt92.setText(split[2]);
+							break;
+				case "73": 	lbl93.setText(split[1]); 
+							txt93.setText(split[2]);
+							break;
+				case "74": 	lbl94.setText(split[1]); 
+							txt94.setText(split[2]);
+							break;
+				case "75": 	lbl95.setText(split[1]); 
+							txt95.setText(split[2]);
+							break;
+				case "76": 	lbl96.setText(split[1]); 
+							txt96.setText(split[2]);
+							break;
+	    		}
+	    		
+	    		
+	    	}
+	    	//System.out.println(fliesenauswahl);
 	    }
 	  
 	    /* initialisiert die Steuerelemente auf der Maske */
@@ -114,6 +155,29 @@ import javafx.stage.Stage;
 	    	txt96.setEditable(false);
 	    	super.getGridPaneSonderwunsch().add(lbl96euro, 2, 6);
 	    	super.getGridPaneSonderwunsch().add(chckBx96, 3, 6);
+	    	
+	    	
+	    	// Wenn DG nicht vorhanden, Optionen für DG-Fliesen aus
+	    	int dg = this.fliesenControl.dachgeschoss();
+	    	if (dg == 0) {
+	    		lbl95.setVisible(false);
+	    		lbl95euro.setVisible(false);
+	    		txt95.setVisible(false);
+	    		chckBx95.setVisible(false);
+	    		lbl96.setVisible(false);
+	    		lbl96euro.setVisible(false);
+	    		txt96.setVisible(false);
+	    		chckBx96.setVisible(false);
+	    	} else {
+	    		lbl95.setVisible(true);
+	    		lbl95euro.setVisible(true);
+	    		txt95.setVisible(true);
+	    		chckBx95.setVisible(true);
+	    		lbl96.setVisible(true);
+	    		lbl96euro.setVisible(true);
+	    		txt96.setVisible(true);
+	    		chckBx96.setVisible(true);
+	    	}
 	    }  
 	    
 	    /**
@@ -131,8 +195,9 @@ import javafx.stage.Stage;
 			}
 	    }
 	    
+	    
 	    // setzt die Checkboxen je nach Sonderwünschen
-	    public void setFliesen(int fnr) {
+	    public void setFliesen(int fnr) {	    	
 			switch(fnr) {
 				case 71: chckBx91.setSelected(true); break;
 				case 72: chckBx92.setSelected(true); break;
@@ -141,19 +206,17 @@ import javafx.stage.Stage;
 				case 75: chckBx95.setSelected(true); break;
 				case 76: chckBx96.setSelected(true); break;
 			}
+			
+			int dg = this.fliesenControl.dachgeschoss();
+			if (dg == 0) {
+				chckBx95.setSelected(false);
+				chckBx96.setSelected(false);
+			}
 		}
 	    
 	 	/* berechnet den Preis der ausgesuchten Fliesen und zeigt diesen an */
 	  	protected void berechneUndZeigePreisSonderwuensche(){
-	  		int dg = this.fliesenControl.dachgeschoss();
 	  		
-	  		if ((dg == 0)&&((chckBx95.isSelected()||(chckBx96.isSelected())))){
-	  			Alert alert = new Alert(AlertType.ERROR);
-	  	        alert.setTitle("Fliesen Preise");
-	  	        alert.setHeaderText("Fehler!");
-	  	        alert.setContentText("Sie haben gar kein Dachgeschoss!");
-	  	        alert.show();
-	  		} else {
 	  			int preis = 0;
 				int[] wunsch = new int[6];
 
@@ -196,11 +259,9 @@ import javafx.stage.Stage;
 	  	        alert.setHeaderText("Der Preis Ihrer Wunschfliesen wurde berechnet");
 	  	        alert.setContentText("Preis: "  + preis+ "€");
 	  	        alert.show();
-	  		}
-	  		
-	  		
-			
+
 	  	}
+
 	  	
 	   	/* speichert die ausgesuchten Sonderwuensche in der Datenbank ab */
 	  	protected void speichereSonderwuensche(){
@@ -229,7 +290,28 @@ import javafx.stage.Stage;
 			return wunschFliesen;
 		}
 	  	
-	 	
+	  	protected void boxcheck(){
+	        chckBx91.setOnAction(aEvent -> {
+	        	if (chckBx91.isSelected()) {
+	        		chckBx93.setSelected(false);
+	        	}
+	        });
+	        chckBx92.setOnAction(aEvent -> {
+	        	if (chckBx92.isSelected()) {
+	        		chckBx94.setSelected(false);
+	        	}
+	        });
+	        chckBx93.setOnAction(aEvent -> {
+	        	if (chckBx93.isSelected()) {
+	        		chckBx91.setSelected(false);
+	        	}
+	        });
+	        chckBx94.setOnAction(aEvent -> {
+	        	if (chckBx94.isSelected()) {
+	        		chckBx92.setSelected(false);
+	        	}
+	        });
+	    }
 	 }
 
 
