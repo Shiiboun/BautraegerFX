@@ -15,7 +15,7 @@ class hatDGTest {
 		hatDG = kundeModel.hatDachgeschoss(5);
 		assertEquals(true, hatDG);
 		
-		// Test der Ueberpruefung auf Dachgeschoss mit Datenbankabfrage:
+		// Test der Ueberpruefung auf Dachgeschoss mit Datenbankabfrage
 		DBConnector dbC = new DBConnector();
 	    hatDG = dbC.hatDachgeschoss(6);
 		assertEquals(false, hatDG);	
