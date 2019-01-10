@@ -31,7 +31,7 @@ public class DBConnector {
             System.out.println("Creating statement...");
             stmt = conn.createStatement();
             String sql;
-            sql = "SELECT Dachgeschoss FROM Bauplan WHERE Plannummer=" + planNummer;
+            sql = "SELECT Dachgeschoss FROM bauplan WHERE Plannummer=" + planNummer;
             ResultSet rs = stmt.executeQuery(sql);
 
             while (rs.next()) {
@@ -162,7 +162,7 @@ public class DBConnector {
             con = DriverManager.getConnection(db_url, user, pass);
 
             //Datenbank hat noch keine Tabelle/Spalte fuer Bilder!
-            String sql = "SELECT Bild FROM Bauplan WHERE Plannummer = ?";
+            String sql = "SELECT Bild FROM bauplan WHERE Plannummer = ?";
 
             pstmt = con.prepareStatement(sql);
             pstmt.setInt(1, id);
