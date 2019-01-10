@@ -9,7 +9,7 @@ import db.DBConnector;
 import javafx.collections.*;
   
 /** 
- * Klasse, welche das Model des Grundfensters mit den Kundendaten enthaelt.
+ * Klasse, welche das Model des Grundfensters mit den Kundendaten enthaelt
  */
 public final class KundeModel {
 	
@@ -22,7 +22,7 @@ public final class KundeModel {
 	    FXCollections.observableArrayList(
 		1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24);
 	
-	// enthaelt Plannummern der Haeuser, welche kein Dachgeschoss besitzen
+	// enthaelt Plannummern der Haeuser, welche kein Dachgeschoss besitzen.
 	private Set<Integer> plannummernOhneDG = new HashSet<Integer>(Arrays.asList(new Integer[] {1, 6, 7, 14, 15, 24})); 
 		
 	// enthaelt das einzige KundeModel-Objekt
