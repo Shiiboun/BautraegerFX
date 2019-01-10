@@ -20,7 +20,7 @@ public class Main extends Application {
         MySQLAccess.init("178.254.15.200","s274608_2827186", "WCEfYuPlIM#2N!3", "db274608x2827186");
         DBConnector.user = "s274608_2827186";
         DBConnector.pass = "WCEfYuPlIM#2N!3";
-        DBConnector.db_url = "jdbc:mysql://" + "178.254.15.200" + "/" + "db274608x2827186";
+        DBConnector.db_url = "jdbc:mysql://" + "178.254.15.200" + "/" + "db274608x2827186?autoReconnect=true&useSSL=false";
         
         // Lokale Datenbank:
 //        MySQLAccess.init("localhost","root", "root", "bautraegerfx");
