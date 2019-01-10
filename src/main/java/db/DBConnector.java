@@ -74,7 +74,7 @@ public class DBConnector {
 //            sql = "INSERT INTO kunden (Vorname, Nachname, Telefonnummer, E-Mail-Adresse) " +
 //                    "VALUES(" + vorname + ", " + nachname + ", " + telefonnummer + ", " + email + ");";
 //            ResultSet rs = stmt.executeQuery(sql);
-            sql = "INSERT INTO `Kunden` (`Vorname`, `Nachname`, `Telefonnummer`, `E-Mail-Adresse`) " +
+            sql = "INSERT INTO `kunden` (`Vorname`, `Nachname`, `Telefonnummer`, `E-Mail-Adresse`) " +
                     "VALUES('" + vorname + "', '" + nachname + "', '" + telefonnummer + "', '" + email + "');";
             int result = stmt.executeUpdate(sql);
             System.out.println(result + " rows inserted");
