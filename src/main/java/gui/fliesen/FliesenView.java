@@ -234,13 +234,11 @@ import javafx.stage.Stage;
 				{
 					wunsch[2] = 1;
 					preis += Integer.parseInt(txt93.getText());
-					preis += Integer.parseInt(txt91.getText());
 				}
 				if (chckBx94.isSelected())
 				{
 					wunsch[3] = 1;
 					preis += Integer.parseInt(txt94.getText());
-					preis += Integer.parseInt(txt92.getText());
 				}
 				if (chckBx95.isSelected())
 				{
